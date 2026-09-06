@@ -443,7 +443,11 @@
 		@media (max-width: 767px) {
 			html, body { max-width: 100%; overflow-x: hidden; }
 			.container { width: min(100% - 34px, 620px); }
-			.intro-splash { background-size: cover; background-position: center center; }
+			/* Localize esta parte dentro de @media (max-width: 767px) e substitua */
+			.intro-splash {
+				background-size: 75% auto !important; /* Garante que a imagem ocupe 75% da largura da tela, sem nunca cortar */
+				background-position: center 38% !important; /* Posiciona o logo ligeiramente acima do centro para não encavalar no botão */
+			}
 			nav { display: none; }
 			.nav-wrap { padding-top: 20px; }
 			.mobile-menu-toggle {
