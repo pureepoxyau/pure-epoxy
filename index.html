@@ -594,10 +594,10 @@
 		@media (max-width: 767px) {
 			html, body { max-width: 100%; overflow-x: hidden; }
 			.container { width: min(100% - 34px, 620px); }
-			/* Localize esta parte dentro de @media (max-width: 767px) e substitua */
+			/* Substituir dentro de @media (max-width: 767px) */
 			.intro-splash {
-				background-size: 75% auto !important; /* Garante que a imagem ocupe 75% da largura da tela, sem nunca cortar */
-				background-position: center 38% !important; /* Posiciona o logo ligeiramente acima do centro para não encavalar no botão */
+				background-size: 90% auto !important; /* Aumenta a imagem para ocupar quase toda a largura, mantendo a proporção */
+				background-position: center 35% !important; /* Posiciona o logo mais acima para não cobrir o botão ENTER */
 			}
 			nav { display: none; }
 			.nav-wrap { padding-top: 20px; }
@@ -674,6 +674,15 @@
 			}
 			.simulator-view { height: 280px; }
 			.simulator-controls { padding: 20px; }
+			/* Adicionar dentro de @media (max-width: 767px) */
+			.brand img {
+				width: 78px !important;   /* Aumenta consideravelmente o tamanho do logo no topo */
+				height: 78px !important;
+				border: 2.5px solid #E5B33A !important;  /* Borda dourada espessa e viva */
+				box-shadow: 0 0 22px rgba(229, 179, 58, 0.65) !important; /* Brilho dourado (glow) bem mais forte e destacado */
+				background: rgba(17, 20, 19, 0.6) !important; /* Fundo escuro para dar contraste nas letras */
+				filter: brightness(1.1) !important;
+			}
 		}
 	</style>
 </head>
