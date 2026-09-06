@@ -28,7 +28,7 @@
 		html { scroll-behavior: smooth; scroll-padding-top: 180px; }
 		section { scroll-margin-top: 180px; }
 
-		/* Localize a .intro-splash no seu CSS e substitua por esta versão turbinada */
+		/* Tela de Entrada - Layout Clássico com Brilho Dourado Horizontal */
 		.intro-splash {
 			position: fixed;
 			z-index: 20;
@@ -41,8 +41,8 @@
 			cursor: pointer;
 			transition: opacity .45s ease, visibility .45s ease;
 
-			/* FAZ O DOURADO NATIVO BRILHAR: Aumenta a saturação dos tons quentes e o contraste */
-			filter: saturate(1.6) brightness(1.12) contrast(1.08);
+			/* Filtro que deixa o dourado original mais vivo e contrastado */
+			filter: saturate(1.45) brightness(1.12) contrast(1.06);
 		}
 		.intro-splash::before { 
 			content: ''; 
@@ -74,29 +74,37 @@
 			animation: goldenBeamPulse 3.5s infinite alternate ease-in-out;
 		}
 
+		/* BOTÃO ENTER: Posicionamento absoluto abaixo da marca da empresa */
 		.intro-splash span { 
-			position: relative; 
-			z-index: 3 !important; 
+			position: absolute; 
+			bottom: 90px;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 3; 
 			font: 700 12px Arial, sans-serif; 
-			letter-spacing: .18em; 
-			text-transform: uppercase; 
-			border: 1px solid rgba(255, 255, 255, 0.3);
-			padding: 14px 32px;
+			letter-spacing: .22em; 
+			text-transform: uppercase;
+			border: 1px solid rgba(255, 255, 255, 0.35);
+			padding: 14px 38px;
 			border-radius: 4px;
-			background: rgba(0, 0, 0, 0.4);
+			background: rgba(0, 0, 0, 0.45);
 			backdrop-filter: blur(3px);
+			transition: all 0.3s ease;
+		}
+		.intro-splash:hover span {
+			border-color: var(--orange);
+			color: var(--orange);
+			background: rgba(0, 0, 0, 0.75);
 		}
 
-		/* Código da animação que faz a linha dourada pulsar com vida */
+		/* Animação que faz a linha dourada pulsar */
 		@keyframes goldenBeamPulse {
 			from {
-				opacity: 0.4;
-				transform: translateY(-50%) scaleY(0.9);
+				opacity: 0.45;
 				filter: blur(1px);
 			}
 			to {
-				opacity: 0.95;
-				transform: translateY(-50%) scaleY(1.2);
+				opacity: 0.9;
 				filter: blur(0px);
 			}
 		}
@@ -724,6 +732,11 @@
 				background-size: contain !important;
 				background-position: center center !important;
 			}
+			.intro-splash span {
+				bottom: 15% !important;
+				font-size: 11px !important;
+				padding: 12px 34px !important;
+			}
 		}
 	</style>
 </head>
@@ -731,7 +744,7 @@
 
 	<!-- Restaurar para o HTML original -->
 	<div class="intro-splash" id="intro-splash" tabindex="0">
-		<span>ENTER / ENTRAR</span>
+		<span>ENTER</span>
 	</div>
 
 	<!-- Cabeçalho de Navegação Retificado -->
