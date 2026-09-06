@@ -137,17 +137,17 @@
 			height: 68px;
 			object-fit: cover;
 			border-radius: 50%;
-			background: rgba(229, 179, 58, 0.05);          /* Suporte de fundo dourado translúcido */
-			border: 2.5px solid rgba(229, 179, 58, 0.85);  /* Borda dourada grossa e bem definida */
-			box-shadow: 0 0 22px rgba(229, 179, 58, 0.4);  /* Glow dourado marcante que destaca o círculo */
-			filter: brightness(1.1);                       /* Realça a nitidez dos elementos brancos */
+			background: rgba(229, 179, 58, 0.05);
+			border: 2.5px solid rgba(229, 179, 58, 0.85); /* Moldura circular dourada viva */
+			box-shadow: 0 0 22px rgba(229, 179, 58, 0.4);  /* Backlight dourado */
+			filter: brightness(1.1);
 			transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 		}
 
 		.brand img:hover {
-			transform: scale(1.08);                        /* Expansão elegante ao passar o mouse */
-			border-color: var(--orange);                   /* Acende a borda no dourado máximo */
-			box-shadow: 0 0 32px rgba(229, 179, 58, 0.7);  /* Intensifica o brilho traseiro */
+			transform: scale(1.08);
+			border-color: var(--orange);
+			box-shadow: 0 0 32px rgba(229, 179, 58, 0.7);
 		}
 		nav { display: flex; align-items: center; gap: 32px; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
 		nav a { opacity: .75; transition: all .2s ease; }
@@ -365,8 +365,34 @@
 		/* Rodapé e Redes Sociais */
 		footer { background: var(--paper); padding: 70px 0 30px; border-top: 1px solid var(--line); }
 		.footer-top { display: flex; justify-content: space-between; gap: 30px; align-items: start; padding-bottom: 50px; }
-		.footer-logo { width: 68px; border-radius: 50%; margin-bottom: 16px; }
+		/* Centraliza perfeitamente a primeira coluna do rodapé (logo + texto) */
+		.footer-top > div:first-child {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		/* Novo padrão de logo com borda dourada destacada e brilho sutil no rodapé */
+		.footer-logo {
+			width: 80px;
+			height: 80px;
+			object-fit: cover;
+			border-radius: 50%;
+			background: rgba(229, 179, 58, 0.05);
+			border: 2px solid rgba(229, 179, 58, 0.85);
+			box-shadow: 0 0 20px rgba(229, 179, 58, 0.3);
+			filter: brightness(1.1);
+			margin: 0 auto 16px;
+			display: block;
+		}
 		.footer-top p { max-width: 250px; color: var(--muted); font-size: 15px; font-weight: 300; }
+		.footer-top > div:first-child p {
+			max-width: 260px;
+			margin-top: 12px;
+			text-align: center;
+			color: var(--muted);
+		}
 		.footer-links { display: flex; gap: 40px; font: 700 11px 'Montserrat', sans-serif; letter-spacing: .15em; text-transform: uppercase; }
 		.footer-links a { opacity: 0.8; transition: color .2s ease; }
 		.footer-links a:hover { color: var(--orange); opacity: 1; }
@@ -409,9 +435,10 @@
 			display: flex; 
 			justify-content: space-between; 
 			border-top: 1px solid var(--line); 
-			padding-top: 24px; 
+			padding-top: 20px; 
 			color: var(--muted); 
-			font: 12px 'Inter', sans-serif; 
+			font: 11px Arial, sans-serif;
+			padding-right: 150px; /* Cria um corredor livre na direita para o botão do WhatsApp não cobrir as cidades */
 		}
 
 		/* Botão Flutuante do WhatsApp - Retificado */
@@ -633,10 +660,11 @@
 			.gallery-grid figure:first-child { grid-column: 1 / -1; grid-row: auto; }
 			form { grid-template-columns: 1fr; gap: 20px; }
 			.field.full, .form-status { grid-column: auto; }
+			footer { padding-bottom: 90px !important; }
 			.footer-top { display: block; }
 			.footer-links { margin-top: 32px; gap: 20px; flex-wrap: wrap; }
 			.footer-social { margin-top: 32px; }
-			.footer-bottom { display: block; text-align: center; }
+			.footer-bottom { display: block; padding-right: 0 !important; text-align: center; }
 			.footer-bottom p:last-child { margin-top: 8px; }
 			.whatsapp { right: 20px; bottom: 20px; padding: 12px 20px; }
 			/* Responsividade do Simulador no Celular */
