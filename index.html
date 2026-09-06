@@ -785,13 +785,12 @@
 			introSplash.classList.add('is-hidden');
 		};
 
-		// Sempre espera o clique manual do usuário para fechar
+		// Sempre espera a ação do usuário (clique no PC ou toque no celular)
 		introSplash.addEventListener('click', hideIntro, { once: true });
+		introSplash.addEventListener('touchstart', hideIntro, { once: true });
 
 		introSplash.addEventListener('keydown', (event) => {
-			if (event.key === 'Enter' || event.key === ' ') {
-				hideIntro();
-			}
+			if (event.key === 'Enter' || event.key === ' ') hideIntro();
 		});
 	</script>
 </body>
