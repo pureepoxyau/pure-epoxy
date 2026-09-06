@@ -181,10 +181,13 @@
 		.footer-top p { max-width: 240px; color: var(--muted); font-size: 15px; }
 		.footer-links { display: flex; gap: 55px; font: 700 11px Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
 		.footer-links a:hover { color: var(--orange); }
-		.footer-social { display: flex; align-items: start; }
+		.footer-social { display: flex; flex-direction: column; align-items: start; gap: 12px; }
 		.instagram { display: flex; align-items: center; gap: 10px; padding: 13px 17px; border-radius: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; box-shadow: 0 8px 25px rgba(18, 92, 48, .28); font: 700 11px Arial, sans-serif; letter-spacing: .04em; transition: transform .2s ease, box-shadow .2s ease; }
 		.instagram:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(188, 24, 136, .36); }
 		.instagram svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+		.facebook { display: flex; align-items: center; gap: 10px; padding: 13px 17px; border-radius: 30px; background: #1877F2; color: #fff; box-shadow: 0 8px 25px rgba(24, 119, 242, .28); font: 700 11px Arial, sans-serif; letter-spacing: .04em; transition: transform .2s ease, box-shadow .2s ease; }
+		.facebook:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(24, 119, 242, .4); }
+		.facebook svg { width: 20px; height: 20px; fill: currentColor; }
 		.footer-bottom { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); font: 11px Arial, sans-serif; }
 		.whatsapp { position: fixed; z-index: 10; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 10px; padding: 13px 17px; border-radius: 30px; background: #27b864; color: #fff; box-shadow: 0 8px 25px rgba(18, 92, 48, .28); font: 700 11px Arial, sans-serif; letter-spacing: .04em; }
 		.whatsapp svg { width: 20px; height: 20px; fill: currentColor; }
@@ -373,7 +376,7 @@
 
 	<footer>
 		<div class="container">
-			<div class="footer-top"><div><img class="footer-logo" src="images/logo.png" alt="Pure Epoxy"><p>Flooring that transforms the way a space is experienced.</p></div><div class="footer-links"><a href="#inicio">Home</a><a href="#processo">Process</a><a href="#galeria">Projects</a><a href="#orcamento">Contact</a></div><div class="footer-social"><a class="instagram" href="https://www.instagram.com/pure_epoxy/reels/" target="_blank" rel="noopener" aria-label="Follow Pure Epoxy on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg><span>Follow Us</span></a></div></div>
+			<div class="footer-top"><div><img class="footer-logo" src="images/logo.png" alt="Pure Epoxy"><p>Flooring that transforms the way a space is experienced.</p></div><div class="footer-links"><a href="#inicio">Home</a><a href="#processo">Process</a><a href="#galeria">Projects</a><a href="#orcamento">Contact</a></div><div class="footer-social"><a class="instagram" href="https://www.instagram.com/pure_epoxy/reels/" target="_blank" rel="noopener" aria-label="Follow Pure Epoxy on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg><span>Follow Us</span></a><a class="facebook" href="https://www.facebook.com/pureepoxysouthcoast" target="_blank" rel="noopener" aria-label="Follow Pure Epoxy on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.31 0-5 1.66-5 5v3H6v4h3v8h4v-8h3l1-4h-4V9c0-.67.33-1 1-1Z"></path></svg><span>Follow Us</span></a></div></div>
 			<div class="footer-bottom"><p>© 2024 Pure Epoxy. All rights reserved.</p><p>Brisbane • Gold Coast • Sunshine Coast</p></div>
 		</div>
 	</footer>
