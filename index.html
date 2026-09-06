@@ -439,6 +439,130 @@
 		}
 		.whatsapp svg { width: 18px; height: 18px; fill: currentColor; }
 
+		/* Seção do Simulador */
+		.simulator {
+			background: var(--cream);
+			padding: 80px 0;
+			border-bottom: 1px solid var(--line);
+		}
+		.simulator-layout {
+			display: grid;
+			grid-template-columns: 1.25fr 0.75fr;
+			gap: 40px;
+			margin-top: 30px;
+		}
+		.simulator-view {
+			position: relative;
+			background: #111413;
+			border-radius: 8px;
+			overflow: hidden;
+			height: 480px;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+			border: 1px solid var(--line);
+		}
+		.simulator-view img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: opacity 0.25s ease;
+		}
+		.simulator-loading {
+			position: absolute;
+			inset: 0;
+			background: rgba(17, 20, 19, 0.85);
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font: 700 11px 'Montserrat', sans-serif;
+			text-transform: uppercase;
+			letter-spacing: .15em;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.2s ease;
+		}
+		.simulator-loading.is-active { opacity: 1; }
+		.simulator-controls {
+			background: #fff;
+			padding: 30px;
+			border-radius: 8px;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			border: 1px solid var(--line);
+		}
+		.control-group { margin-bottom: 24px; }
+		.control-group h3 {
+			font-size: 11px;
+			text-transform: uppercase;
+			letter-spacing: .12em;
+			margin-bottom: 16px;
+			color: var(--muted);
+		}
+		.style-selectors {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+		.style-btn {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			background: transparent;
+			border: 1px solid var(--line);
+			padding: 16px 20px;
+			border-radius: 6px;
+			width: 100%;
+			text-align: left;
+			cursor: pointer;
+			transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+		.style-btn div {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+		}
+		.style-btn strong {
+			font-family: 'Montserrat', sans-serif;
+			font-size: 14px;
+			font-weight: 700;
+			color: var(--ink);
+		}
+		.style-btn .sub-label {
+			font-family: 'Inter', sans-serif;
+			font-size: 12px;
+			color: var(--muted);
+		}
+		.color-swatch {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			display: inline-block;
+			flex-shrink: 0;
+			box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+		}
+		.style-btn:hover {
+			border-color: var(--orange);
+			background: var(--cream);
+		}
+		.style-btn.active {
+			border-color: var(--orange);
+			background: var(--cream);
+			box-shadow: 0 4px 15px rgba(229, 179, 58, 0.15);
+		}
+		.simulator-cta-box {
+			border-top: 1px solid var(--line);
+			padding-top: 20px;
+		}
+		.simulator-cta-box p {
+			font-size: 13px;
+			color: var(--muted);
+			margin-bottom: 14px;
+			line-height: 1.5;
+		}
+		.simulator-cta-box .button { width: 100%; }
+
 		/* Otimizações Responsivas para Celular */
 		@media (max-width: 767px) {
 			html, body { max-width: 100%; overflow-x: hidden; }
@@ -515,6 +639,13 @@
 			.footer-bottom { display: block; text-align: center; }
 			.footer-bottom p:last-child { margin-top: 8px; }
 			.whatsapp { right: 20px; bottom: 20px; padding: 12px 20px; }
+			/* Responsividade do Simulador no Celular */
+			.simulator-layout {
+				grid-template-columns: 1fr;
+				gap: 20px;
+			}
+			.simulator-view { height: 280px; }
+			.simulator-controls { padding: 20px; }
 		}
 	</style>
 </head>
@@ -669,6 +800,56 @@
 			</div>
 		</section>
 
+		<!-- Seção do Simulador Virtual (Showroom) -->
+		<!-- Seção do Simulador Virtual (Showroom Curado) -->
+		<section class="simulator" id="simulador" aria-labelledby="simulator-title">
+			<div class="container">
+				<div class="section-heading">
+					<div>
+						<span class="eyebrow">Interactive Showroom</span>
+						<h2 id="simulator-title">Visualize the premium finish.</h2>
+					</div>
+					<p>Compare our elite floor concepts and see how different coatings transform residential and commercial environments.</p>
+				</div>
+
+				<div class="simulator-layout">
+					<!-- Visualizador de Imagem -->
+					<div class="simulator-view">
+						<img id="simulator-image" src="images/sim-garage-charcoal.jpg" alt="Premium Epoxy Floor Simulation">
+						<div class="simulator-loading" id="simulator-loading">Updating view...</div>
+					</div>
+
+					<!-- Painel de Controle de Opções -->
+					<div class="simulator-controls">
+						<div class="control-group">
+							<h3>Select Concept</h3>
+							<div class="style-selectors">
+								<button type="button" class="style-btn active" data-image="sim-garage-charcoal" data-label="Residential Garage (Carbon Charcoal)">
+									<span class="color-swatch" style="background: #34373c;"></span>
+									<div>
+										<strong>Residential Garage</strong>
+										<span class="sub-label">Carbon Charcoal Finish</span>
+									</div>
+								</button>
+								<button type="button" class="style-btn" data-image="sim-commercial-grey" data-label="Commercial Showroom (Classic Grey)">
+									<span class="color-swatch" style="background: #9fa1a6;"></span>
+									<div>
+										<strong>Commercial Showroom</strong>
+										<span class="sub-label">Classic Grey Finish</span>
+									</div>
+								</button>
+							</div>
+						</div>
+
+						<div class="simulator-cta-box">
+							<p>Loved one of these styles? Send your preference to our team for a personalized quote.</p>
+							<a href="#orcamento" id="simulator-quote-btn" class="button">Quote this concept <span aria-hidden="true">&nbsp;↗</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="quote" id="orcamento" aria-labelledby="quote-title">
 			<div class="container quote-layout">
 				<div class="quote-intro">
@@ -795,6 +976,52 @@
 
 		introSplash.addEventListener('keydown', (event) => {
 			if (event.key === 'Enter' || event.key === ' ') hideIntro();
+		});
+
+		// Funcionalidade do Showroom / Simulador Virtual Curado
+		const simImage = document.getElementById('simulator-image');
+		const simLoading = document.getElementById('simulator-loading');
+		const styleBtns = document.querySelectorAll('.style-btn');
+		const messageTextarea = document.getElementById('message');
+
+		const updateSimulation = (imageName, label) => {
+			// 1. Ativa efeito de transição visual suave
+			simLoading.classList.add('is-active');
+			simImage.style.opacity = '0.4';
+
+			// 2. Constrói o caminho da imagem baseado na seleção
+			const newSrc = `images/${imageName}.jpg`;
+
+			// 3. Pré-carrega a imagem na memória antes de exibir
+			const tempImg = new Image();
+			tempImg.src = newSrc;
+			tempImg.onload = () => {
+				simImage.src = newSrc;
+				simImage.style.opacity = '1';
+				simLoading.classList.remove('is-active');
+			};
+			tempImg.onerror = () => {
+				simImage.style.opacity = '1';
+				simLoading.classList.remove('is-active');
+			};
+
+			// 4. Inteligência: Atualiza a caixa de texto do orçamento com a escolha do cliente
+			if (messageTextarea) {
+				messageTextarea.value = `Hi! I used the Virtual Showroom on your website. I'm highly interested in getting a quote based on your premium showcase concept: "${label}".`;
+			}
+		};
+
+		// Monitora cliques nos botões de conceito
+		styleBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				styleBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+
+				const targetImage = btn.dataset.image;
+				const targetLabel = btn.dataset.label;
+
+				updateSimulation(targetImage, targetLabel);
+			});
 		});
 	</script>
 </body>
