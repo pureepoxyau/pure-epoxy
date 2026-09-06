@@ -36,33 +36,37 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: #0D0F0E url('images/intro.gif') center / cover no-repeat;
+			background: #000 url('images/intro.gif') center / cover no-repeat;
 			color: #fff;
 			cursor: pointer;
-			transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1), visibility .6s cubic-bezier(0.16, 1, 0.3, 1);
+			transition: opacity .45s ease, visibility .45s ease;
+			/* Nova linha: Faz o dourado da linha e o nome do logo saltarem aos olhos com brilho e contraste */
+			filter: brightness(1.25) contrast(1.18);
 		}
 		.intro-splash::before { 
 			content: ''; 
 			position: absolute; 
 			inset: 0; 
-			background: rgba(13, 15, 14, 0.75); /* Sobreposição escura mais suave */
+			background: radial-gradient(circle, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.65) 100%);
 		}
 		.intro-splash span { 
-			position: relative; 
+			position: absolute; 
+			bottom: 15%; /* Joga o botão perfeitamente na parte de baixo da tela */
 			z-index: 1; 
 			font: 700 11px 'Montserrat', sans-serif; 
 			letter-spacing: .25em; 
 			text-transform: uppercase; 
-			border: 1px solid rgba(255,255,255,0.3);
-			padding: 16px 32px;
+			border: 1px solid rgba(255,255,255,0.4);
+			padding: 14px 36px;
 			border-radius: 4px;
-			background: rgba(0,0,0,0.2);
+			background: rgba(0,0,0,0.45);
 			backdrop-filter: blur(4px);
 			transition: all .3s ease;
 		}
 		.intro-splash:hover span {
 			border-color: var(--orange);
 			color: var(--orange);
+			background: rgba(0,0,0,0.7);
 		}
 		.intro-splash.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
@@ -594,10 +598,10 @@
 		@media (max-width: 767px) {
 			html, body { max-width: 100%; overflow-x: hidden; }
 			.container { width: min(100% - 34px, 620px); }
-			/* Substituir dentro de @media (max-width: 767px) */
+			/* Substitua a regra do .intro-splash que está dentro de @media (max-width: 767px) */
 			.intro-splash {
-				background-size: 90% auto !important; /* Aumenta a imagem para ocupar quase toda a largura, mantendo a proporção */
-				background-position: center 35% !important; /* Posiciona o logo mais acima para não cobrir o botão ENTER */
+				background-size: 85% auto !important; /* Proporção ideal para o logo não cortar e ficar imponente */
+				background-position: center 30% !important; /* Posiciona o logo ligeiramente acima do meio */
 			}
 			nav { display: none; }
 			.nav-wrap { padding-top: 20px; }
@@ -690,7 +694,7 @@
 
 	<!-- Tela de Entrada (Splash) com Fechamento Inteligente (Auto-Dismiss de 1.5s) -->
 	<div class="intro-splash" id="intro-splash" tabindex="0">
-		<span>Enter / Entrar</span>
+		<span>ENTER</span>
 	</div>
 
 	<!-- Cabeçalho de Navegação Retificado -->
