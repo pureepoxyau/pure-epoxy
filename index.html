@@ -779,32 +779,20 @@
 			});
 		});
 
-		// Configuração da Tela de Introdução (Splash)
 		const introSplash = document.querySelector('#intro-splash');
-		
+
 		const hideIntro = () => {
 			introSplash.classList.add('is-hidden');
-			sessionStorage.setItem('pure-epoxy-intro-seen', 'true');
 		};
 
-		if (sessionStorage.getItem('pure-epoxy-intro-seen') === 'true') {
-			introSplash.classList.add('is-hidden');
-		} else {
-			// Fechamento automático inteligente após 1.5 segundos para não travar a experiência do usuário
-			const autoTimer = setTimeout(hideIntro, 1500);
+		// Sempre espera o clique manual do usuário para fechar
+		introSplash.addEventListener('click', hideIntro, { once: true });
 
-			introSplash.addEventListener('click', () => {
-				clearTimeout(autoTimer);
+		introSplash.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter' || event.key === ' ') {
 				hideIntro();
-			}, { once: true });
-
-			introSplash.addEventListener('keydown', (event) => {
-				if (event.key === 'Enter' || event.key === ' ') {
-					clearTimeout(autoTimer);
-					hideIntro();
-				}
-			});
-		}
+			}
+		});
 	</script>
 </body>
 </html>
