@@ -28,7 +28,7 @@
 		html { scroll-behavior: smooth; scroll-padding-top: 180px; }
 		section { scroll-margin-top: 180px; }
 
-		/* Tela de Entrada - Transição Suave e Visual Limpo */
+		/* Localize a .intro-splash no seu CSS e substitua por esta versão turbinada */
 		.intro-splash {
 			position: fixed;
 			z-index: 20;
@@ -40,34 +40,67 @@
 			color: #fff;
 			cursor: pointer;
 			transition: opacity .45s ease, visibility .45s ease;
-			/* Nova linha: Faz o dourado da linha e o nome do logo saltarem aos olhos com brilho e contraste */
-			filter: brightness(1.25) contrast(1.18);
+
+			/* FAZ O DOURADO NATIVO BRILHAR: Aumenta a saturação dos tons quentes e o contraste */
+			filter: saturate(1.6) brightness(1.12) contrast(1.08);
 		}
 		.intro-splash::before { 
 			content: ''; 
 			position: absolute; 
 			inset: 0; 
-			background: radial-gradient(circle, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.65) 100%);
+			background: rgba(0, 0, 0, .58);
+			z-index: 1;
 		}
+		.intro-splash::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			height: 3px;
+			background: linear-gradient(90deg,
+				rgba(229, 179, 58, 0) 0%,
+				rgba(229, 179, 58, 0.4) 25%,
+				rgba(255, 220, 120, 0.95) 50%,
+				rgba(229, 179, 58, 0.4) 75%,
+				rgba(229, 179, 58, 0) 100%
+			);
+			box-shadow: 0 0 15px rgba(229, 179, 58, 0.7),
+				0 0 30px rgba(229, 179, 58, 0.4);
+			opacity: 0.85;
+			pointer-events: none;
+			z-index: 2;
+			animation: goldenBeamPulse 3.5s infinite alternate ease-in-out;
+		}
+
 		.intro-splash span { 
-			position: absolute; 
-			bottom: 15%; /* Joga o botão perfeitamente na parte de baixo da tela */
-			z-index: 1; 
-			font: 700 11px 'Montserrat', sans-serif; 
-			letter-spacing: .25em; 
+			position: relative; 
+			z-index: 3 !important; 
+			font: 700 12px Arial, sans-serif; 
+			letter-spacing: .18em; 
 			text-transform: uppercase; 
-			border: 1px solid rgba(255,255,255,0.4);
-			padding: 14px 36px;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			padding: 14px 32px;
 			border-radius: 4px;
-			background: rgba(0,0,0,0.45);
-			backdrop-filter: blur(4px);
-			transition: all .3s ease;
+			background: rgba(0, 0, 0, 0.4);
+			backdrop-filter: blur(3px);
 		}
-		.intro-splash:hover span {
-			border-color: var(--orange);
-			color: var(--orange);
-			background: rgba(0,0,0,0.7);
+
+		/* Código da animação que faz a linha dourada pulsar com vida */
+		@keyframes goldenBeamPulse {
+			from {
+				opacity: 0.4;
+				transform: translateY(-50%) scaleY(0.9);
+				filter: blur(1px);
+			}
+			to {
+				opacity: 0.95;
+				transform: translateY(-50%) scaleY(1.2);
+				filter: blur(0px);
+			}
 		}
+
 		.intro-splash.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
 		/* Tipografia e Estrutura Geral */
@@ -600,11 +633,6 @@
 		@media (max-width: 767px) {
 			html, body { max-width: 100%; overflow-x: hidden; }
 			.container { width: min(100% - 34px, 620px); }
-			/* Dentro de @media (max-width: 767px) */
-			.intro-splash {
-				background-size: 80% auto !important; /* Deixa 10% de margem livre em cada lado, garantindo que o "Y" nunca seja cortado */
-				background-position: center 30% !important;
-			}
 			nav { display: none; }
 			.nav-wrap { padding-top: 20px; }
 			.mobile-menu-toggle {
@@ -691,14 +719,19 @@
 				background: rgba(17, 20, 19, 0.6) !important; /* Fundo escuro para dar contraste nas letras */
 				filter: brightness(1.1) !important;
 			}
+			/* Dentro de @media (max-width: 767px), restaurar o comportamento padrão */
+			.intro-splash {
+				background-size: contain !important;
+				background-position: center center !important;
+			}
 		}
 	</style>
 </head>
 <body>
 
-	<!-- Tela de Entrada (Splash) com Fechamento Inteligente (Auto-Dismiss de 1.5s) -->
+	<!-- Restaurar para o HTML original -->
 	<div class="intro-splash" id="intro-splash" tabindex="0">
-		<span>ENTER</span>
+		<span>ENTER / ENTRAR</span>
 	</div>
 
 	<!-- Cabeçalho de Navegação Retificado -->
@@ -1015,7 +1048,7 @@
 			introSplash.classList.add('is-hidden');
 		};
 
-		// Sempre espera a ação do usuário (clique no PC ou toque no celular)
+		// Fecha imediatamente ao clicar no PC ou tocar no celular
 		introSplash.addEventListener('click', hideIntro, { once: true });
 		introSplash.addEventListener('touchstart', hideIntro, { once: true });
 
