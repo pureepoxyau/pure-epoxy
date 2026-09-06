@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Pure Epoxy: high-performance epoxy flooring for residential, commercial and industrial spaces.">
+	<title>Pure Epoxy | Surfaces that elevate a space</title>
+	<style>
+		:root {
+			--ink: #17211e;
+			--muted: #67726d;
+			--cream: #f4f0e8;
+			--paper: #fbfaf6;
+			--lime: #d6ee57;
+			--lime-dark: #a9ca25;
+			--orange: #e66f3d;
+			--line: #d8ddd2;
+			--dark: #17211e;
+			--shadow: 0 24px 60px rgba(23, 33, 30, .12);
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; scroll-padding-top: 180px; }
+		section { scroll-margin-top: 180px; }
+		.intro-splash {
+			position: fixed;
+			z-index: 20;
+			inset: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #000 url('images/intro.gif') center / cover no-repeat;
+			color: #fff;
+			cursor: pointer;
+			transition: opacity .45s ease, visibility .45s ease;
+		}
+		.intro-splash::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, .62); }
+		.intro-splash span { position: relative; z-index: 1; font: 700 12px Arial, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+		.intro-splash.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: Georgia, 'Times New Roman', serif;
+			line-height: 1.5;
+		}
+		h1, h2, h3, p { margin-top: 0; }
+		h1, h2, h3, nav, button, input, textarea, label, small { font-family: Arial, Helvetica, sans-serif; }
+		img { display: block; max-width: 100%; }
+		a { color: inherit; text-decoration: none; }
+		.container { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 9px;
+			color: var(--orange);
+			font: 700 11px/1 Arial, sans-serif;
+			letter-spacing: .16em;
+			text-transform: uppercase;
+		}
+		.eyebrow::before { content: ''; width: 28px; height: 2px; background: currentColor; }
+		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 49px;
+			padding: 0 23px;
+			border: 1px solid var(--ink);
+			border-radius: 2px;
+			background: var(--ink);
+			color: #fff;
+			font: 700 12px/1 Arial, sans-serif;
+			letter-spacing: .08em;
+			text-transform: uppercase;
+			transition: transform .2s ease, background .2s ease, color .2s ease;
+		}
+		.button:hover { transform: translateY(-3px); background: var(--orange); border-color: var(--orange); }
+		.button.light { background: transparent; color: var(--ink); }
+		.button.light:hover { color: #fff; }
+
+		header {
+			position: fixed;
+			z-index: 5;
+			top: 0;
+			width: 100%;
+			background: rgba(0, 0, 0, .82);
+			color: #fff;
+			backdrop-filter: blur(8px);
+		}
+		.nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; }
+		.brand { background: transparent; }
+		.brand img { width: 70px; border-radius: 50%; background: transparent; }
+		nav { display: flex; align-items: center; gap: 30px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+		nav a { opacity: .86; transition: opacity .2s ease; }
+		nav a:hover { opacity: 1; color: var(--lime); }
+		.nav-cta { border-bottom: 1px solid var(--lime); padding-bottom: 5px; }
+		.mobile-menu-toggle, .mobile-nav { display: none; }
+
+		.hero {
+			position: relative;
+			min-height: 75vh;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+			background: #000;
+			color: #fff;
+		}
+		.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,.15) 100%); }
+		.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; opacity: .88; }
+		.hero-content { position: relative; top: 120px; left: 48px; z-index: 1; width: min(650px, 100%); padding: 115px 0 25px; }
+		.hero h1 { max-width: 680px; margin: 0 0 16px; color: #C9A24A; font-size: clamp(2.8rem, 5.8vw, 5rem); line-height: .93; letter-spacing: -.06em; text-shadow: 0 4px 18px rgba(0,0,0,.75); }
+		.hero-subtitle { margin: 0 0 18px; color: #fff; font: 700 15px/1.2 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; text-shadow: 0 4px 18px rgba(0,0,0,.75); }
+		.hero p.hero-description { max-width: 450px; margin-bottom: 28px; color: #fff; font-size: 18px; text-shadow: 0 4px 18px rgba(0,0,0,.75); }
+		.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+		.hero-actions .button { width: 220px; min-height: 49px; border-color: var(--lime); background: var(--lime); color: #000; }
+		.hero-actions .button:hover { border-color: var(--lime-dark); background: var(--lime-dark); color: #000; }
+
+		.intro { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: end; padding: 68px 0 24px; }
+		.intro h2, .section-heading h2 { margin: 17px 0 0; font-size: clamp(2.4rem, 4.5vw, 4.5rem); line-height: .98; letter-spacing: -.055em; }
+		.intro-copy { color: var(--muted); font-size: 18px; }
+		.intro-copy strong { color: var(--ink); font-family: Arial, sans-serif; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; }
+
+		.transform { background: var(--cream); padding: 56px 0 16px; }
+		.section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 30px; }
+		.section-heading p { max-width: 325px; margin-bottom: 4px; color: var(--muted); font-size: 16px; }
+		.compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+		.compare-card { position: relative; min-height: 410px; overflow: hidden; background: #d2d4cb; }
+		.compare-card img { width: 100%; height: 410px; object-fit: cover; transition: transform .5s ease; }
+		.compare-card:hover img { transform: scale(1.04); }
+		.compare-label { position: absolute; top: 18px; left: 18px; padding: 8px 12px; background: var(--paper); font: 700 10px Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+		.compare-card.after .compare-label { background: var(--lime); }
+
+		.process { padding: 56px 0 16px; }
+		.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 21px; }
+		.process-card { border-top: 1px solid var(--ink); padding-top: 18px; }
+		.process-card img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 23px; }
+		.process-card:nth-child(1) img { object-position: center 50%; }
+		.process-card:nth-child(2) img { object-position: center 78%; }
+		.process-card:nth-child(3) img { object-position: center 92%; }
+		.process-card:nth-child(4) img { object-position: center 50%; }
+		.process-number { color: var(--orange); font: 700 11px Arial, sans-serif; letter-spacing: .15em; }
+		.process-card h3 { margin: 13px 0 8px; font-size: 23px; letter-spacing: -.035em; }
+		.process-card p { color: var(--muted); font-size: 16px; }
+
+		.featured { background: var(--dark); color: #fff; padding: 70px 0 30px; }
+		.featured-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 72px; align-items: center; }
+		.featured-image { position: relative; }
+		.featured-image img { width: 100%; height: 500px; object-fit: cover; }
+		.featured-image::after { content: 'Project 01'; position: absolute; right: 0; bottom: 0; padding: 17px 20px; background: var(--lime); color: var(--dark); font: 700 11px Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+		.featured h2 { margin: 18px 0 20px; color: #fff; font-size: clamp(2.7rem, 5vw, 5rem); line-height: .95; letter-spacing: -.06em; }
+		.featured p { max-width: 410px; color: rgba(255,255,255,.65); font-size: 17px; }
+		.project-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; border-top: 1px solid rgba(255,255,255,.23); margin: 35px 0; padding-top: 20px; }
+		.project-meta span { display: block; margin-bottom: 5px; color: var(--lime); font: 700 10px Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+		.project-meta strong { font: 17px Georgia, serif; }
+		.featured .button { background: var(--lime); border-color: var(--lime); color: var(--dark); }
+
+		.gallery { padding: 70px 0 30px; }
+		.gallery-grid { display: grid; grid-template-columns: 1.35fr .8fr .8fr; grid-template-rows: 220px 220px; gap: 16px; }
+		.gallery-grid figure { position: relative; overflow: hidden; margin: 0; background: #ddd; }
+		.gallery-grid figure:first-child { grid-row: span 2; }
+		.gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+		.gallery-grid figure:hover img { transform: scale(1.06); }
+
+		.quote { background: var(--lime); padding: 70px 0 30px; }
+		.quote-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: start; }
+		.quote h2 { margin: 16px 0; font-size: clamp(2.8rem, 5vw, 5.2rem); line-height: .9; letter-spacing: -.06em; }
+		.quote-intro p { max-width: 310px; font-size: 17px; }
+		form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+		.field { display: flex; flex-direction: column; gap: 8px; }
+		.field.full { grid-column: 1 / -1; }
+		label { font: 700 10px Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+		input, textarea { width: 100%; border: 0; border-bottom: 1px solid rgba(23,33,30,.55); border-radius: 0; padding: 12px 0; background: transparent; color: var(--ink); font-size: 17px; outline: none; }
+		input:focus, textarea:focus { border-color: var(--orange); }
+		textarea { min-height: 84px; resize: vertical; }
+		form .button { justify-self: start; margin-top: 10px; background: var(--ink); }
+		.form-status { grid-column: 1 / -1; min-height: 20px; color: var(--ink); font: 700 12px Arial, sans-serif; }
+
+		footer { background: var(--paper); padding: 45px 0 20px; }
+		.footer-top { display: flex; justify-content: space-between; gap: 30px; align-items: start; padding-bottom: 40px; }
+		.footer-logo { width: 145px; border-radius: 50%; }
+		.footer-top p { max-width: 240px; color: var(--muted); font-size: 15px; }
+		.footer-links { display: flex; gap: 55px; font: 700 11px Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+		.footer-links a:hover { color: var(--orange); }
+		.footer-bottom { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); font: 11px Arial, sans-serif; }
+		.whatsapp { position: fixed; z-index: 10; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 10px; padding: 13px 17px; border-radius: 30px; background: #27b864; color: #fff; box-shadow: 0 8px 25px rgba(18, 92, 48, .28); font: 700 11px Arial, sans-serif; letter-spacing: .04em; }
+		.whatsapp svg { width: 20px; height: 20px; fill: currentColor; }
+
+		@media (max-width: 767px) {
+			html, body { max-width: 100%; overflow-x: hidden; }
+			.container { width: min(100% - 34px, 620px); }
+			.intro-splash { background-size: contain; background-position: center center; }
+			nav { display: none; }
+			.nav-wrap { padding-top: 19px; }
+			.mobile-menu-toggle {
+				display: inline-flex;
+				position: relative;
+				z-index: 2;
+				width: 44px;
+				height: 44px;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid rgba(255,255,255,.55);
+				background: transparent;
+				color: #fff;
+				cursor: pointer;
+			}
+			.mobile-menu-toggle span, .mobile-menu-toggle span::before, .mobile-menu-toggle span::after { display: block; width: 19px; height: 2px; background: currentColor; transition: transform .25s ease, opacity .25s ease; }
+			.mobile-menu-toggle span { position: relative; }
+			.mobile-menu-toggle span::before, .mobile-menu-toggle span::after { content: ''; position: absolute; left: 0; }
+			.mobile-menu-toggle span::before { top: -6px; }
+			.mobile-menu-toggle span::after { top: 6px; }
+			.mobile-menu-toggle[aria-expanded="true"] span { background: transparent; }
+			.mobile-menu-toggle[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+			.mobile-menu-toggle[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
+			.mobile-nav {
+				display: flex;
+				position: absolute;
+				top: 100%;
+				right: 0;
+				left: 0;
+				flex-direction: column;
+				gap: 0;
+				padding: 12px 17px 20px;
+				background: rgba(0,0,0,.96);
+				transform: translateY(-12px);
+				visibility: hidden;
+				opacity: 0;
+				transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+			}
+			.mobile-nav.is-open { transform: translateY(0); visibility: visible; opacity: 1; }
+			.mobile-nav a { display: block; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.18); color: #fff; font: 700 11px Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+			.mobile-nav a:hover { color: var(--lime); }
+			.mobile-nav .nav-cta { border-bottom: 0; color: var(--lime); }
+			.hero { min-height: 75vh; }
+			.hero-content { top: 0; left: 0; width: 100%; padding: 110px 17px 35px; text-align: center; }
+			.hero h1 { font-size: clamp(42px, 11vw, 72px); }
+			.hero p.hero-description { margin-right: auto; margin-left: auto; }
+			.hero-actions { justify-content: center; }
+			.intro, .featured-layout, .quote-layout { grid-template-columns: 1fr; gap: 36px; }
+			.intro { padding: 54px 0 34px; }
+			.section-heading { display: block; }
+			.section-heading p { margin-top: 20px; }
+			.transform, .process, .featured, .gallery, .quote { padding: 50px 0 30px; }
+			.compare-grid, .process-grid { grid-template-columns: 1fr; }
+			.compare-card, .compare-card img { min-height: 310px; height: 310px; }
+			.featured-image img { height: 330px; }
+			.gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 150px 150px; }
+			.gallery-grid img, .process-card img, .compare-card img, .featured-image img { max-width: 100%; }
+			.gallery-grid figure:first-child { grid-column: 1 / -1; grid-row: auto; }
+			form { grid-template-columns: 1fr; }
+			.field.full, .form-status { grid-column: auto; }
+			.footer-top, .footer-bottom { display: block; }
+			.footer-links { margin-top: 33px; gap: 25px; flex-wrap: wrap; }
+			.footer-bottom p:last-child { margin-top: 10px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="intro-splash" id="intro-splash" role="button" tabindex="0" aria-label="Enter website">
+		<span>Click Anywhere To Enter</span>
+	</div>
+	<header>
+		<div class="container nav-wrap">
+			<a class="brand" href="#inicio" aria-label="Pure Epoxy, home"><img src="images/logo.png" alt="Pure Epoxy"></a>
+			<nav aria-label="Main navigation">
+				<a href="#transformacao">Before and after</a>
+				<a href="#processo">Process</a>
+				<a href="#galeria">Gallery</a>
+				<a class="nav-cta" href="#orcamento">Request a quote</a>
+			</nav>
+			<button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu"><span></span></button>
+			<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+				<a href="#transformacao">Before &amp; After</a>
+				<a href="#processo">Process</a>
+				<a href="#projeto">Featured Project</a>
+				<a href="#galeria">Gallery</a>
+				<a class="nav-cta" href="#orcamento">Quote</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero" id="inicio" aria-labelledby="hero-title">
+			<img class="hero-image" src="images/featured-project.jpg" alt="Glossy epoxy floor in a contemporary space">
+			<div class="container hero-content">
+				<span class="hero-subtitle">PURE EPOXY</span>
+				<h1 id="hero-title">Built To Last.<br>Designed To Impress.</h1>
+				<p class="hero-description">Premium epoxy flooring for homes, garages and commercial spaces across Queensland.</p>
+				<div class="hero-actions">
+					  <a class="button" href="#orcamento">Get a free quote <span aria-hidden="true">&nbsp;↗</span></a>
+				</div>
+			</div>
+		</section>
+
+		<section class="container intro" aria-labelledby="intro-title">
+			<div>
+				<span class="eyebrow">Details matter</span>
+				<h2 id="intro-title">Made to be seen. Built to last.</h2>
+			</div>
+			<div class="intro-copy">
+				<p><strong>Pure Epoxy</strong></p>
+				<p>From base preparation to the final polish, we care about every millimetre. We create seamless surfaces that combine visual impact, practicality and performance at any scale.</p>
+			</div>
+		</section>
+
+		<section class="transform" id="transformacao" aria-labelledby="transform-title">
+			<div class="container">
+				<div class="section-heading">
+					  <div><span class="eyebrow">Before and after</span><h2 id="transform-title">The difference is underfoot.</h2></div>
+					  <p>A new surface can transform the way a space is seen and experienced.</p>
+				</div>
+				<div class="compare-grid">
+					  <figure class="compare-card"><img src="images/before-01.gif" alt="Space before epoxy flooring installation"><figcaption class="compare-label">Before</figcaption></figure>
+					  <figure class="compare-card after"><img src="images/after-01.gif" alt="Space after epoxy flooring installation"><figcaption class="compare-label">After</figcaption></figure>
+				</div>
+			</div>
+		</section>
+
+		<section class="container process" id="processo" aria-labelledby="process-title">
+			<div class="section-heading"><div><span class="eyebrow">Our process</span><h2 id="process-title">Precision in every layer.</h2></div><p>A clear method, selected materials and a team that respects your space.</p></div>
+			<div class="process-grid">
+				<article class="process-card"><img src="images/grinding-01.gif" alt="Surface preparation with professional grinding equipment"><span class="process-number">01 / PREPARATION</span><h3>Surface Preparation</h3><p>Professional grinding creates the ideal surface profile for epoxy adhesion.</p></article>
+				<article class="process-card"><img src="images/preparation.jpg" alt="Detailed preparation of the concrete substrate"><span class="process-number">02 / PREPARATION</span><h3>Detailed Preparation</h3><p>Surface defects are corrected and the substrate is prepared for coating.</p></article>
+				<article class="process-card"><img src="images/application-01.gif" alt="Precise epoxy application by a professional operator"><span class="process-number">03 / APPLICATION</span><h3>Epoxy Application</h3><p>Premium coatings are applied with precision and consistency.</p></article>
+				<article class="process-card"><img src="images/featured-project.jpg" alt="Finished premium epoxy floor"><span class="process-number">04 / FINAL RESULT</span><h3>Final Result</h3><p>A durable, premium finish designed to impress and perform.</p></article>
+			</div>
+		</section>
+
+		<section class="featured" id="projeto" aria-labelledby="project-title">
+			<div class="container featured-layout">
+				<div class="featured-image"><img src="images/featured-project.jpg" alt="Residential project with a sophisticated epoxy floor finish"></div>
+				<div><span class="eyebrow">Featured project</span><h2 id="project-title">Premium Residential Garage</h2><p>A high-gloss mineral floor for a home that calls for continuity. The result: light, spaciousness and a texture that speaks to the architecture.</p><div class="project-meta"><div><span>Location</span><strong>Brisbane, QLD</strong></div><div><span>Area</span><strong>180 m²</strong></div></div><a class="button" href="#orcamento">I want something like this <span aria-hidden="true">&nbsp;↗</span></a></div>
+			</div>
+		</section>
+
+		<section class="container gallery" id="galeria" aria-labelledby="gallery-title">
+			<div class="section-heading"><div><span class="eyebrow">Portfolio</span><h2 id="gallery-title">Surfaces with personality.</h2></div><p>Explore some of the spaces given a new perspective with Pure Epoxy.</p></div>
+			<div class="gallery-grid">
+				<figure><img src="images/gallery-01.jpg" alt="Epoxy project detail in a spacious setting"></figure>
+				<figure><img src="images/gallery-02.jpg" alt="Epoxy floor in a commercial space"></figure>
+				<figure><img src="images/gallery-03.jpg" alt="Contemporary epoxy finish"></figure>
+				<figure><img src="images/gallery-04.jpg" alt="Epoxy surface with a sophisticated texture"></figure>
+			</div>
+		</section>
+
+		<section class="quote" id="orcamento" aria-labelledby="quote-title">
+			<div class="container quote-layout">
+				<div class="quote-intro"><span class="eyebrow">Let’s talk</span><h2 id="quote-title">Your next space starts here.</h2><p>Tell us a little about your project. We’ll come back to you with an initial estimate and the next steps.</p></div>
+				<form id="quote-form">
+					  <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+					  <div class="field"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+					<div class="field"><label for="phone">WhatsApp</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+					  <div class="field"><label for="area">Approximate area</label><input id="area" name="area" type="text" placeholder="E.g. 80 m²"></div>
+					  <div class="field full"><label for="message">Tell us about the project</label><textarea id="message" name="message" required></textarea></div>
+					  <button class="button" type="submit">Request a quote <span aria-hidden="true">&nbsp;↗</span></button>
+					<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<a class="whatsapp" href="https://wa.me/61435992512" target="_blank" rel="noopener" aria-label="Chat with Pure Epoxy on WhatsApp">
+		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a9.8 9.8 0 0 0-8.49 14.72L2 22l5.44-1.43A9.8 9.8 0 1 0 12 2Zm0 17.9a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.23.85.86-3.15-.2-.32A8.1 8.1 0 1 1 12 19.9Zm4.44-6.08c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.63.78-.77.94-.14.16-.28.18-.52.06-1.4-.7-2.32-1.25-3.24-2.83-.24-.41.24-.38.69-1.27.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.68 2.57 4.07 3.6 1.51.65 2.1.7 2.85.59.46-.07 1.43-.59 1.63-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"></path></svg>
+		WhatsApp
+	</a>
+
+	<footer>
+		<div class="container">
+			<div class="footer-top"><div><img class="footer-logo" src="images/logo.png" alt="Pure Epoxy"><p>Flooring that transforms the way a space is experienced.</p></div><div class="footer-links"><a href="#inicio">Home</a><a href="#processo">Process</a><a href="#galeria">Projects</a><a href="#orcamento">Contact</a></div></div>
+			<div class="footer-bottom"><p>© 2024 Pure Epoxy. All rights reserved.</p><p>Brisbane • Gold Coast • Sunshine Coast</p></div>
+		</div>
+	</footer>
+	<script>
+		const fixedHeader = document.querySelector('header');
+		const mobileMenuToggle = document.querySelector('#mobile-menu-toggle');
+		const mobileNav = document.querySelector('#mobile-nav');
+		const closeMobileMenu = () => {
+			mobileNav.classList.remove('is-open');
+			mobileMenuToggle.setAttribute('aria-expanded', 'false');
+			mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+		};
+		mobileMenuToggle.addEventListener('click', () => {
+			const isOpen = mobileNav.classList.toggle('is-open');
+			mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+			mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+		});
+		mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMobileMenu));
+		document.addEventListener('click', (event) => {
+			if (!mobileNav.contains(event.target) && !mobileMenuToggle.contains(event.target)) closeMobileMenu();
+		});
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape') closeMobileMenu();
+		});
+		document.querySelectorAll('a[href^="#"]').forEach((link) => {
+			link.addEventListener('click', (event) => {
+				const target = document.querySelector(link.getAttribute('href'));
+				if (!target) return;
+				event.preventDefault();
+				const sectionTopPadding = parseFloat(getComputedStyle(target).paddingTop) || 0;
+				const targetTop = target.getBoundingClientRect().top + window.scrollY + sectionTopPadding - fixedHeader.offsetHeight - 80;
+				window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+				history.pushState(null, '', link.getAttribute('href'));
+			});
+		});
+		const introSplash = document.querySelector('#intro-splash');
+		const hideIntro = () => {
+			introSplash.classList.add('is-hidden');
+			sessionStorage.setItem('pure-epoxy-intro-seen', 'true');
+		};
+		if (sessionStorage.getItem('pure-epoxy-intro-seen') === 'true') {
+			introSplash.classList.add('is-hidden');
+		} else {
+			introSplash.addEventListener('click', hideIntro, { once: true });
+			introSplash.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter' || event.key === ' ') hideIntro();
+			});
+		}
+		const form = document.querySelector('#quote-form');
+		const status = document.querySelector('#form-status');
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			status.textContent = 'We have received your enquiry. Our team will be in touch soon.';
+			form.reset();
+		});
+	</script>
+</body>
+</html>
