@@ -1,27 +1,34 @@
+:
 <!doctype html>
-<html lang="en-AU">
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Pure Epoxy: high-performance epoxy flooring for residential, commercial and industrial spaces.">
-	<title>Pure Epoxy | Surfaces that elevate a space</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pure Epoxy | Built To Last. Designed To Impress.</title>
+	
 	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;700;800&display=swap');
+
 		:root {
-			--ink: #17211e;
-			--muted: #67726d;
-			--cream: #f4f0e8;
-			--paper: #fbfaf6;
-			--lime: #d6ee57;
-			--lime-dark: #a9ca25;
-			--orange: #e66f3d;
-			--line: #d8ddd2;
-			--dark: #17211e;
-			--shadow: 0 24px 60px rgba(23, 33, 30, .12);
+			/* Nova Paleta de Cores Premium */
+			--ink: #111413;       /* Grafite ultra escuro em vez de preto puro */
+			--paper: #FCFBF9;     /* Off-white quente e luxuoso para fundos */
+			--cream: #F5F2EB;     /* Creme suave para seções de contraste */
+			--dark: #191C1B;      /* Cinza escuro sofisticado para seções destacadas */
+			--muted: #666E6B;     /* Slate gray suave para textos secundários */
+			
+			/* Dourado metálico intenso */
+			--lime: #E5B33A;      /* Dourado vivo de alta visibilidade */
+			--lime-dark: #C4911E; /* Tom mais escuro para o hover */
+			--orange: #E5B33A;    /* Unifica os detalhes decorativos com o dourado */
+			--line: #E5E2DC;      /* Divisórias sutis e elegantes */
 		}
 
 		* { box-sizing: border-box; }
 		html { scroll-behavior: smooth; scroll-padding-top: 180px; }
 		section { scroll-margin-top: 180px; }
+
+		/* Tela de Entrada - Transição Suave e Visual Limpo */
 		.intro-splash {
 			position: fixed;
 			z-index: 20;
@@ -29,175 +36,416 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: #000 url('images/intro.gif') center / cover no-repeat;
+			background: #0D0F0E url('images/intro.gif') center / cover no-repeat;
 			color: #fff;
 			cursor: pointer;
-			transition: opacity .45s ease, visibility .45s ease;
+			transition: opacity .6s cubic-bezier(0.16, 1, 0.3, 1), visibility .6s cubic-bezier(0.16, 1, 0.3, 1);
 		}
-		.intro-splash::before { content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, .62); }
-		.intro-splash span { position: relative; z-index: 1; font: 700 12px Arial, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+		.intro-splash::before { 
+			content: ''; 
+			position: absolute; 
+			inset: 0; 
+			background: rgba(13, 15, 14, 0.75); /* Sobreposição escura mais suave */
+		}
+		.intro-splash span { 
+			position: relative; 
+			z-index: 1; 
+			font: 700 11px 'Montserrat', sans-serif; 
+			letter-spacing: .25em; 
+			text-transform: uppercase; 
+			border: 1px solid rgba(255,255,255,0.3);
+			padding: 16px 32px;
+			border-radius: 4px;
+			background: rgba(0,0,0,0.2);
+			backdrop-filter: blur(4px);
+			transition: all .3s ease;
+		}
+		.intro-splash:hover span {
+			border-color: var(--orange);
+			color: var(--orange);
+		}
 		.intro-splash.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+		/* Tipografia e Estrutura Geral */
 		body {
 			margin: 0;
 			color: var(--ink);
 			background: var(--paper);
-			font-family: Georgia, 'Times New Roman', serif;
-			line-height: 1.5;
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+			line-height: 1.6;
+			-webkit-font-smoothing: antialiased;
 		}
 		h1, h2, h3, p { margin-top: 0; }
-		h1, h2, h3, nav, button, input, textarea, label, small { font-family: Arial, Helvetica, sans-serif; }
+		h1, h2, h3, nav, button, input, textarea, label, small { font-family: 'Montserrat', sans-serif; }
 		img { display: block; max-width: 100%; }
 		a { color: inherit; text-decoration: none; }
 		.container { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+
+		/* Subtítulos Decorativos */
 		.eyebrow {
 			display: inline-flex;
 			align-items: center;
-			gap: 9px;
+			gap: 12px;
 			color: var(--orange);
-			font: 700 11px/1 Arial, sans-serif;
-			letter-spacing: .16em;
+			font: 700 11px/1 'Montserrat', sans-serif;
+			letter-spacing: .2em;
 			text-transform: uppercase;
 		}
-		.eyebrow::before { content: ''; width: 28px; height: 2px; background: currentColor; }
+		.eyebrow::before { content: ''; width: 24px; height: 1px; background: currentColor; }
+
+		/* Botões Modernizados */
 		.button {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			min-height: 49px;
-			padding: 0 23px;
+			min-height: 52px;
+			padding: 0 32px;
 			border: 1px solid var(--ink);
-			border-radius: 2px;
+			border-radius: 4px; /* Cantos levemente arredondados */
 			background: var(--ink);
 			color: #fff;
-			font: 700 12px/1 Arial, sans-serif;
-			letter-spacing: .08em;
+			font: 700 11px/1 'Montserrat', sans-serif;
+			letter-spacing: .12em;
 			text-transform: uppercase;
-			transition: transform .2s ease, background .2s ease, color .2s ease;
+			transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
 		}
-		.button:hover { transform: translateY(-3px); background: var(--orange); border-color: var(--orange); }
+		.button:hover { 
+			transform: translateY(-2px); 
+			box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+			background: var(--orange); 
+			border-color: var(--orange); 
+			color: #fff;
+		}
 		.button.light { background: transparent; color: var(--ink); }
 		.button.light:hover { color: #fff; }
 
+		/* Cabeçalho de Navegação Retificado */
 		header {
 			position: fixed;
 			z-index: 5;
 			top: 0;
 			width: 100%;
-			background: rgba(0, 0, 0, .82);
+			background: rgba(17, 20, 19, 0.85); /* Tom grafite escuro com transparência */
 			color: #fff;
-			backdrop-filter: blur(8px);
+			backdrop-filter: blur(12px); /* Efeito blur de vidro melhorado */
+			border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 		}
-		.nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; }
+		.nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
 		.brand { background: transparent; }
-		.brand img { width: 70px; border-radius: 50%; background: transparent; }
-		nav { display: flex; align-items: center; gap: 30px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-		nav a { opacity: .86; transition: opacity .2s ease; }
-		nav a:hover { opacity: 1; color: var(--lime); }
-		.nav-cta { border-bottom: 1px solid var(--lime); padding-bottom: 5px; }
+		.brand img {
+			width: 68px;
+			height: 68px;
+			object-fit: cover;
+			border-radius: 50%;
+			background: rgba(229, 179, 58, 0.05);          /* Suporte de fundo dourado translúcido */
+			border: 2.5px solid rgba(229, 179, 58, 0.85);  /* Borda dourada grossa e bem definida */
+			box-shadow: 0 0 22px rgba(229, 179, 58, 0.4);  /* Glow dourado marcante que destaca o círculo */
+			filter: brightness(1.1);                       /* Realça a nitidez dos elementos brancos */
+			transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		.brand img:hover {
+			transform: scale(1.08);                        /* Expansão elegante ao passar o mouse */
+			border-color: var(--orange);                   /* Acende a borda no dourado máximo */
+			box-shadow: 0 0 32px rgba(229, 179, 58, 0.7);  /* Intensifica o brilho traseiro */
+		}
+		nav { display: flex; align-items: center; gap: 32px; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+		nav a { opacity: .75; transition: all .2s ease; }
+		nav a:hover { opacity: 1; color: var(--orange); }
+		.nav-cta { 
+			border: 1px solid var(--orange); 
+			padding: 10px 20px; 
+			border-radius: 4px;
+			transition: all .25s ease;
+		}
+		.nav-cta:hover {
+			background: var(--orange);
+			color: var(--ink) !important;
+		}
 		.mobile-menu-toggle, .mobile-nav { display: none; }
 
+		/* Hero Section de Alto Impacto */
 		.hero {
 			position: relative;
-			min-height: 75vh;
+			min-height: 80vh;
 			display: flex;
 			align-items: center;
 			overflow: hidden;
-			background: #000;
+			background: #0D0F0E;
 			color: #fff;
 		}
-		.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,.15) 100%); }
-		.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; opacity: .88; }
-		.hero-content { position: relative; top: 120px; left: 48px; z-index: 1; width: min(650px, 100%); padding: 115px 0 25px; }
-		.hero h1 { max-width: 680px; margin: 0 0 16px; color: #C9A24A; font-size: clamp(2.8rem, 5.8vw, 5rem); line-height: .93; letter-spacing: -.06em; text-shadow: 0 4px 18px rgba(0,0,0,.75); }
-		.hero-subtitle { margin: 0 0 18px; color: #fff; font: 700 15px/1.2 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; text-shadow: 0 4px 18px rgba(0,0,0,.75); }
-		.hero p.hero-description { max-width: 450px; margin-bottom: 28px; color: #fff; font-size: 18px; text-shadow: 0 4px 18px rgba(0,0,0,.75); }
-		.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-		.hero-actions .button { width: 220px; min-height: 49px; border-color: var(--lime); background: var(--lime); color: #000; }
-		.hero-actions .button:hover { border-color: var(--lime-dark); background: var(--lime-dark); color: #000; }
+		.hero::before { 
+			content: ''; 
+			position: absolute; 
+			inset: 0; 
+			background: linear-gradient(90deg, rgba(13,15,14,0.92) 0%, rgba(13,15,14,0.7) 50%, rgba(13,15,14,0.2) 100%); 
+		}
+		.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; opacity: .75; }
+		.hero-content { position: relative; top: 40px; left: 0; z-index: 1; width: min(650px, 100%); padding: 120px 0 40px; }
+		.hero h1 { 
+			max-width: 680px; 
+			margin: 0 0 20px; 
+			color: #C9A24A; /* Dourado */
+			font-size: clamp(3rem, 6vw, 5.2rem); 
+			line-height: 1.0; 
+			letter-spacing: -.04em; 
+			text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Sombra suavizada */
+		}
+		.hero-subtitle { 
+			margin: 0 0 16px; 
+			color: #fff; 
+			font: 700 12px/1.2 'Montserrat', sans-serif; 
+			letter-spacing: .25em; 
+			text-transform: uppercase; 
+			text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+		}
+		.hero p.hero-description { 
+			max-width: 460px; 
+			margin-bottom: 32px; 
+			color: rgba(255,255,255,0.9); 
+			font-size: 19px; 
+			font-weight: 300;
+			line-height: 1.6;
+			text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+		}
+		.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+		.hero-actions .button { 
+			width: auto;
+			min-width: 220px;
+			border-color: var(--orange); 
+			background: var(--orange); 
+			color: var(--ink); 
+		}
+		.hero-actions .button:hover { 
+			border-color: var(--lime-dark); 
+			background: var(--lime-dark); 
+			color: #fff; 
+		}
 
-		.intro { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: end; padding: 68px 0 24px; }
-		.intro h2, .section-heading h2 { margin: 17px 0 0; font-size: clamp(2.4rem, 4.5vw, 4.5rem); line-height: .98; letter-spacing: -.055em; }
-		.intro-copy { color: var(--muted); font-size: 18px; }
-		.intro-copy strong { color: var(--ink); font-family: Arial, sans-serif; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; }
+		/* Seção de Introdução */
+		.intro { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; padding: 80px 0 40px; }
+		.intro h2, .section-heading h2 { margin: 16px 0 0; font-size: clamp(2.4rem, 4.5vw, 4.2rem); line-height: 1.05; letter-spacing: -.04em; }
+		.intro-copy { color: var(--muted); font-size: 17px; font-weight: 300; }
+		.intro-copy strong { color: var(--ink); font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
 
-		.transform { background: var(--cream); padding: 56px 0 16px; }
-		.section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 30px; }
-		.section-heading p { max-width: 325px; margin-bottom: 4px; color: var(--muted); font-size: 16px; }
-		.compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-		.compare-card { position: relative; min-height: 410px; overflow: hidden; background: #d2d4cb; }
-		.compare-card img { width: 100%; height: 410px; object-fit: cover; transition: transform .5s ease; }
-		.compare-card:hover img { transform: scale(1.04); }
-		.compare-label { position: absolute; top: 18px; left: 18px; padding: 8px 12px; background: var(--paper); font: 700 10px Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
-		.compare-card.after .compare-label { background: var(--lime); }
+		/* Seção de Antes e Depois (Transformação) */
+		.transform { background: var(--cream); padding: 80px 0 40px; }
+		.section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 40px; }
+		.section-heading p { max-width: 350px; margin-bottom: 4px; color: var(--muted); font-size: 16px; font-weight: 300; }
+		.compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+		.compare-card { 
+			position: relative; 
+			min-height: 410px; 
+			overflow: hidden; 
+			background: #E5E2DC; 
+			border-radius: 8px; /* Cantos arredondados profissionais */
+			box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+		}
+		.compare-card img { width: 100%; height: 410px; object-fit: cover; transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
+		.compare-card:hover img { transform: scale(1.05); }
+		.compare-label { 
+			position: absolute; 
+			top: 20px; 
+			left: 20px; 
+			padding: 8px 16px; 
+			border-radius: 4px;
+			background: var(--paper); 
+			color: var(--ink);
+			font: 700 10px 'Montserrat', sans-serif; 
+			letter-spacing: .12em; 
+			text-transform: uppercase; 
+			box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+		}
+		.compare-card.after .compare-label { 
+			background: var(--orange); 
+			color: var(--ink);
+		}
 
-		.process { padding: 56px 0 16px; }
-		.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 21px; }
-		.process-card { border-top: 1px solid var(--ink); padding-top: 18px; }
-		.process-card img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 23px; }
+		/* Seção do Processo */
+		.process { padding: 80px 0 40px; }
+		.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+		.process-card { 
+			border-top: 2px solid var(--line); /* Divisória horizontal sutil */
+			padding-top: 24px; 
+			transition: border-color .3s ease;
+		}
+		.process-card:hover {
+			border-top-color: var(--orange); /* Destaque interativo ao passar o mouse */
+		}
+		.process-card img { 
+			width: 100%; 
+			height: 220px; 
+			object-fit: cover; 
+			margin-bottom: 24px; 
+			border-radius: 6px; 
+		}
 		.process-card:nth-child(1) img { object-position: center 50%; }
 		.process-card:nth-child(2) img { object-position: center 78%; }
 		.process-card:nth-child(3) img { object-position: center 92%; }
 		.process-card:nth-child(4) img { object-position: center 50%; }
-		.process-number { color: var(--orange); font: 700 11px Arial, sans-serif; letter-spacing: .15em; }
-		.process-card h3 { margin: 13px 0 8px; font-size: 23px; letter-spacing: -.035em; }
-		.process-card p { color: var(--muted); font-size: 16px; }
+		.process-number { color: var(--orange); font: 700 11px 'Montserrat', sans-serif; letter-spacing: .15em; }
+		.process-card h3 { margin: 16px 0 10px; font-size: 21px; letter-spacing: -.02em; }
+		.process-card p { color: var(--muted); font-size: 15px; font-weight: 300; }
 
-		.featured { background: var(--dark); color: #fff; padding: 70px 0 30px; }
-		.featured-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 72px; align-items: center; }
-		.featured-image { position: relative; }
+		/* Projeto em Destaque */
+		.featured { background: var(--dark); color: #fff; padding: 90px 0 50px; }
+		.featured-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; }
+		.featured-image { position: relative; overflow: hidden; border-radius: 8px; }
 		.featured-image img { width: 100%; height: 500px; object-fit: cover; }
-		.featured-image::after { content: 'Project 01'; position: absolute; right: 0; bottom: 0; padding: 17px 20px; background: var(--lime); color: var(--dark); font: 700 11px Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
-		.featured h2 { margin: 18px 0 20px; color: #fff; font-size: clamp(2.7rem, 5vw, 5rem); line-height: .95; letter-spacing: -.06em; }
-		.featured p { max-width: 410px; color: rgba(255,255,255,.65); font-size: 17px; }
-		.project-meta { display: grid; grid-template-columns: 1fr; gap: 20px; border-top: 1px solid rgba(255,255,255,.23); margin: 35px 0; padding-top: 20px; }
-		.project-meta span { display: block; margin-bottom: 5px; color: var(--lime); font: 700 10px Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-		.project-meta strong { font: 17px Georgia, serif; }
-		.featured .button { background: var(--lime); border-color: var(--lime); color: var(--dark); }
+		.featured-image::after { 
+			content: 'Project 01'; 
+			position: absolute; 
+			right: 0; 
+			bottom: 0; 
+			padding: 16px 24px; 
+			background: var(--orange); 
+			color: var(--ink); 
+			font: 700 11px 'Montserrat', sans-serif; 
+			letter-spacing: .12em; 
+			text-transform: uppercase; 
+			border-top-left-radius: 6px;
+		}
+		.featured h2 { margin: 16px 0 24px; color: #fff; font-size: clamp(2.6rem, 5vw, 4.5rem); line-height: 1.0; letter-spacing: -.04em; }
+		.featured p { max-width: 410px; color: rgba(255,255,255,.7); font-size: 16px; font-weight: 300; }
+		.project-meta { display: grid; grid-template-columns: 1fr; gap: 20px; border-top: 1px solid rgba(255,255,255,.12); margin: 32px 0; padding-top: 24px; }
+		.project-meta span { display: block; margin-bottom: 6px; color: var(--orange); font: 700 10px 'Montserrat', sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+		.project-meta strong { font: 18px 'Inter', sans-serif; font-weight: 500; }
+		.featured .button { background: var(--orange); border-color: var(--orange); color: var(--ink); }
+		.featured .button:hover { background: #fff; border-color: #fff; color: var(--ink); }
 
-		.gallery { padding: 70px 0 30px; }
-		.gallery-grid { display: grid; grid-template-columns: 1.35fr .8fr .8fr; grid-template-rows: 220px 220px; gap: 16px; }
-		.gallery-grid figure { position: relative; overflow: hidden; margin: 0; background: #ddd; }
+		/* Galeria de Portfólio */
+		.gallery { padding: 80px 0 40px; }
+		.gallery-grid { display: grid; grid-template-columns: 1.35fr .8fr .8fr; grid-template-rows: 220px 220px; gap: 20px; }
+		.gallery-grid figure { 
+			position: relative; 
+			overflow: hidden; 
+			margin: 0; 
+			background: #ddd; 
+			border-radius: 8px;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+		}
 		.gallery-grid figure:first-child { grid-row: span 2; }
-		.gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+		.gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
 		.gallery-grid figure:hover img { transform: scale(1.06); }
 
-		.quote { background: var(--lime); padding: 70px 0 30px; }
-		.quote-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: start; }
-		.quote h2 { margin: 16px 0; font-size: clamp(2.8rem, 5vw, 5.2rem); line-height: .9; letter-spacing: -.06em; }
-		.quote-intro p { max-width: 310px; font-size: 17px; }
-		form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
-		.field { display: flex; flex-direction: column; gap: 8px; }
+		/* Seção de Contato/Orçamento - Redesenhada como Bloco Dark Premium */
+		.quote { background: var(--dark); color: #fff; padding: 90px 0 50px; }
+		.quote-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
+		.quote h2 { margin: 16px 0; font-size: clamp(2.8rem, 5vw, 4.8rem); line-height: 1.0; letter-spacing: -.04em; color: #fff; }
+		.quote-intro p { max-width: 320px; font-size: 17px; color: rgba(255,255,255,0.7); font-weight: 300; }
+		form { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+		.field { display: flex; flex-direction: column; gap: 10px; }
 		.field.full { grid-column: 1 / -1; }
-		label { font: 700 10px Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-		input, textarea { width: 100%; border: 0; border-bottom: 1px solid rgba(23,33,30,.55); border-radius: 0; padding: 12px 0; background: transparent; color: var(--ink); font-size: 17px; outline: none; }
+		label { font: 700 10px 'Montserrat', sans-serif; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+		input, textarea { 
+			width: 100%; 
+			border: 0; 
+			border-bottom: 1px solid rgba(255,255,255,0.2); 
+			border-radius: 0; 
+			padding: 12px 0; 
+			background: transparent; 
+			color: #fff; 
+			font-family: 'Inter', sans-serif;
+			font-size: 16px; 
+			outline: none; 
+			transition: border-color .3s ease;
+		}
 		input:focus, textarea:focus { border-color: var(--orange); }
-		textarea { min-height: 84px; resize: vertical; }
-		form .button { justify-self: start; margin-top: 10px; background: var(--ink); }
-		.form-status { grid-column: 1 / -1; min-height: 20px; color: var(--ink); font: 700 12px Arial, sans-serif; }
+		textarea { min-height: 90px; resize: vertical; }
+		form .button { 
+			justify-self: start; 
+			margin-top: 15px; 
+			background: var(--orange); 
+			border-color: var(--orange);
+			color: var(--ink);
+		}
+		form .button:hover { background: #fff; border-color: #fff; color: var(--ink); }
+		.form-status { grid-column: 1 / -1; min-height: 20px; color: var(--orange); font: 700 12px 'Montserrat', sans-serif; }
 
-		footer { background: var(--paper); padding: 45px 0 20px; }
-		.footer-top { display: flex; justify-content: space-between; gap: 30px; align-items: start; padding-bottom: 40px; }
-		.footer-logo { width: 145px; border-radius: 50%; }
-		.footer-top p { max-width: 240px; color: var(--muted); font-size: 15px; }
-		.footer-links { display: flex; gap: 55px; font: 700 11px Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
-		.footer-links a:hover { color: var(--orange); }
-		.footer-social { display: flex; flex-direction: column; align-items: start; gap: 12px; }
-		.instagram { display: flex; align-items: center; gap: 10px; padding: 13px 17px; border-radius: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; box-shadow: 0 8px 25px rgba(18, 92, 48, .28); font: 700 11px Arial, sans-serif; letter-spacing: .04em; transition: transform .2s ease, box-shadow .2s ease; }
-		.instagram:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(188, 24, 136, .36); }
-		.instagram svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-		.facebook { display: flex; align-items: center; gap: 10px; padding: 13px 17px; border-radius: 30px; background: #1877F2; color: #fff; box-shadow: 0 8px 25px rgba(24, 119, 242, .28); font: 700 11px Arial, sans-serif; letter-spacing: .04em; transition: transform .2s ease, box-shadow .2s ease; }
-		.facebook:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(24, 119, 242, .4); }
-		.facebook svg { width: 20px; height: 20px; fill: currentColor; }
-		.footer-bottom { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); font: 11px Arial, sans-serif; }
-		.whatsapp { position: fixed; z-index: 10; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 10px; padding: 13px 17px; border-radius: 30px; background: #27b864; color: #fff; box-shadow: 0 8px 25px rgba(18, 92, 48, .28); font: 700 11px Arial, sans-serif; letter-spacing: .04em; }
-		.whatsapp svg { width: 20px; height: 20px; fill: currentColor; }
+		/* Rodapé e Redes Sociais */
+		footer { background: var(--paper); padding: 70px 0 30px; border-top: 1px solid var(--line); }
+		.footer-top { display: flex; justify-content: space-between; gap: 30px; align-items: start; padding-bottom: 50px; }
+		.footer-logo { width: 68px; border-radius: 50%; margin-bottom: 16px; }
+		.footer-top p { max-width: 250px; color: var(--muted); font-size: 15px; font-weight: 300; }
+		.footer-links { display: flex; gap: 40px; font: 700 11px 'Montserrat', sans-serif; letter-spacing: .15em; text-transform: uppercase; }
+		.footer-links a { opacity: 0.8; transition: color .2s ease; }
+		.footer-links a:hover { color: var(--orange); opacity: 1; }
+		.footer-social { display: flex; flex-direction: column; align-items: start; gap: 14px; }
 
+		.instagram, .facebook { 
+			display: inline-flex; 
+			align-items: center; 
+			gap: 12px; 
+			padding: 12px 24px; 
+			border-radius: 30px; 
+			color: #fff; 
+			font: 700 11px 'Montserrat', sans-serif; 
+			letter-spacing: .08em; 
+			transition: all .3s ease; 
+		}
+		.instagram { 
+			background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
+			box-shadow: 0 4px 15px rgba(220, 39, 67, 0.2); 
+		}
+		.instagram:hover { 
+			transform: translateY(-2px); 
+			box-shadow: 0 8px 25px rgba(220, 39, 67, 0.35); 
+			color: #fff;
+		}
+		.instagram svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+		.facebook { 
+			background: #1877F2; 
+			box-shadow: 0 4px 15px rgba(24, 119, 242, 0.2); 
+		}
+		.facebook:hover { 
+			transform: translateY(-2px); 
+			box-shadow: 0 8px 25px rgba(24, 119, 242, 0.35); 
+			color: #fff;
+		}
+		.facebook svg { width: 18px; height: 18px; fill: currentColor; }
+
+		.footer-bottom { 
+			display: flex; 
+			justify-content: space-between; 
+			border-top: 1px solid var(--line); 
+			padding-top: 24px; 
+			color: var(--muted); 
+			font: 12px 'Inter', sans-serif; 
+		}
+
+		/* Botão Flutuante do WhatsApp - Retificado */
+		.whatsapp { 
+			position: fixed; 
+			z-index: 10; 
+			right: 32px; 
+			bottom: 32px; 
+			display: flex; 
+			align-items: center; 
+			gap: 10px; 
+			padding: 14px 24px; 
+			border-radius: 30px; 
+			background: #25D366; /* Verde oficial WhatsApp */
+			color: #fff; 
+			box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3); 
+			font: 700 11px 'Montserrat', sans-serif; 
+			letter-spacing: .08em; 
+			transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+		.whatsapp:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 16px 35px rgba(37, 211, 102, 0.45);
+			color: #fff;
+		}
+		.whatsapp svg { width: 18px; height: 18px; fill: currentColor; }
+
+		/* Otimizações Responsivas para Celular */
 		@media (max-width: 767px) {
 			html, body { max-width: 100%; overflow-x: hidden; }
 			.container { width: min(100% - 34px, 620px); }
-			.intro-splash { background-size: contain; background-position: center center; }
+			.intro-splash { background-size: cover; background-position: center center; }
 			nav { display: none; }
-			.nav-wrap { padding-top: 19px; }
+			.nav-wrap { padding-top: 20px; }
 			.mobile-menu-toggle {
 				display: inline-flex;
 				position: relative;
@@ -206,12 +454,13 @@
 				height: 44px;
 				align-items: center;
 				justify-content: center;
-				border: 1px solid rgba(255,255,255,.55);
+				border: 1px solid rgba(255,255,255,.3);
+				border-radius: 4px;
 				background: transparent;
 				color: #fff;
 				cursor: pointer;
 			}
-			.mobile-menu-toggle span, .mobile-menu-toggle span::before, .mobile-menu-toggle span::after { display: block; width: 19px; height: 2px; background: currentColor; transition: transform .25s ease, opacity .25s ease; }
+			.mobile-menu-toggle span, .mobile-menu-toggle span::before, .mobile-menu-toggle span::after { display: block; width: 18px; height: 2px; background: currentColor; transition: transform .25s ease, opacity .25s ease; }
 			.mobile-menu-toggle span { position: relative; }
 			.mobile-menu-toggle span::before, .mobile-menu-toggle span::after { content: ''; position: absolute; left: 0; }
 			.mobile-menu-toggle span::before { top: -6px; }
@@ -227,62 +476,74 @@
 				left: 0;
 				flex-direction: column;
 				gap: 0;
-				padding: 12px 17px 20px;
-				background: rgba(0,0,0,.96);
-				transform: translateY(-12px);
+				padding: 16px 20px 24px;
+				background: rgba(13, 15, 14, 0.98);
+				transform: translateY(-10px);
 				visibility: hidden;
 				opacity: 0;
 				transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+				border-bottom: 1px solid rgba(255,255,255,0.1);
 			}
 			.mobile-nav.is-open { transform: translateY(0); visibility: visible; opacity: 1; }
-			.mobile-nav a { display: block; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.18); color: #fff; font: 700 11px Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-			.mobile-nav a:hover { color: var(--lime); }
-			.mobile-nav .nav-cta { border-bottom: 0; color: var(--lime); }
-			.hero { min-height: 75vh; }
-			.hero-content { top: 0; left: 0; width: 100%; padding: 110px 17px 35px; text-align: center; }
-			.hero h1 { font-size: clamp(42px, 11vw, 72px); }
-			.hero p.hero-description { margin-right: auto; margin-left: auto; }
+			.mobile-nav a { display: block; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); color: #fff; font: 700 11px 'Montserrat', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+			.mobile-nav a:hover { color: var(--orange); }
+			.mobile-nav .nav-cta { border-bottom: 0; color: var(--orange); }
+			.hero { min-height: 80vh; }
+			.hero-content { top: 0; left: 0; width: 100%; padding: 120px 16px 40px; text-align: center; }
+			.hero h1 { font-size: clamp(38px, 10vw, 64px); }
+			.hero p.hero-description { margin-right: auto; margin-left: auto; font-size: 17px; }
 			.hero-actions { justify-content: center; }
-			.intro, .featured-layout, .quote-layout { grid-template-columns: 1fr; gap: 36px; }
-			.intro { padding: 54px 0 34px; }
+			.intro, .featured-layout, .quote-layout { grid-template-columns: 1fr; gap: 40px; }
+			.intro { padding: 60px 0 40px; }
 			.section-heading { display: block; }
-			.section-heading p { margin-top: 20px; }
-			.transform, .process, .featured, .gallery, .quote { padding: 50px 0 30px; }
-			.compare-grid, .process-grid { grid-template-columns: 1fr; }
+			.section-heading p { margin-top: 16px; }
+			.transform, .process, .featured, .gallery, .quote { padding: 60px 0 40px; }
+			.compare-grid, .process-grid { grid-template-columns: 1fr; gap: 20px; }
 			.compare-card, .compare-card img { min-height: 310px; height: 310px; }
-			.featured-image img { height: 330px; }
-			.gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 150px 150px; }
-			.gallery-grid img, .process-card img, .compare-card img, .featured-image img { max-width: 100%; }
+			.featured-image img { height: 320px; }
+			.gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 150px 150px; gap: 12px; }
 			.gallery-grid figure:first-child { grid-column: 1 / -1; grid-row: auto; }
-			form { grid-template-columns: 1fr; }
+			form { grid-template-columns: 1fr; gap: 20px; }
 			.field.full, .form-status { grid-column: auto; }
-			.footer-top, .footer-bottom { display: block; }
-			.footer-links { margin-top: 33px; gap: 25px; flex-wrap: wrap; }
-			.footer-bottom p:last-child { margin-top: 10px; }
+			.footer-top { display: block; }
+			.footer-links { margin-top: 32px; gap: 20px; flex-wrap: wrap; }
+			.footer-social { margin-top: 32px; }
+			.footer-bottom { display: block; text-align: center; }
+			.footer-bottom p:last-child { margin-top: 8px; }
+			.whatsapp { right: 20px; bottom: 20px; padding: 12px 20px; }
 		}
 	</style>
 </head>
 <body>
-	<div class="intro-splash" id="intro-splash" role="button" tabindex="0" aria-label="Enter website">
-		<span>Click Anywhere To Enter</span>
+
+	<!-- Tela de Entrada (Splash) com Fechamento Inteligente (Auto-Dismiss de 1.5s) -->
+	<div class="intro-splash" id="intro-splash" tabindex="0">
+		<span>Enter / Entrar</span>
 	</div>
+
+	<!-- Cabeçalho de Navegação Retificado -->
 	<header>
 		<div class="container nav-wrap">
-			<a class="brand" href="#inicio" aria-label="Pure Epoxy, home"><img src="images/logo.png" alt="Pure Epoxy"></a>
-			<nav aria-label="Main navigation">
-				<a href="#transformacao">Before and after</a>
+			<a href="#inicio" class="brand">
+				<img src="images/logo.png" alt="Pure Epoxy Logo">
+			</a>
+			<nav>
+				<a href="#inicio">Home</a>
+				<a href="#transformacao">Before & After</a>
 				<a href="#processo">Process</a>
-				<a href="#galeria">Gallery</a>
-				<a class="nav-cta" href="#orcamento">Request a quote</a>
+				<a href="#galeria">Projects</a>
+				<a href="#orcamento" class="nav-cta">Get a Quote</a>
 			</nav>
-			<button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu"><span></span></button>
-			<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-				<a href="#transformacao">Before &amp; After</a>
+			<button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation menu">
+				<span></span>
+			</button>
+			<div id="mobile-nav" class="mobile-nav">
+				<a href="#inicio">Home</a>
+				<a href="#transformacao">Before & After</a>
 				<a href="#processo">Process</a>
-				<a href="#projeto">Featured Project</a>
-				<a href="#galeria">Gallery</a>
-				<a class="nav-cta" href="#orcamento">Quote</a>
-			</nav>
+				<a href="#galeria">Projects</a>
+				<a href="#orcamento" class="nav-cta">Get a Quote</a>
+			</div>
 		</div>
 	</header>
 
@@ -294,7 +555,7 @@
 				<h1 id="hero-title">Built To Last.<br>Designed To Impress.</h1>
 				<p class="hero-description">Premium epoxy flooring for homes, garages and commercial spaces across Queensland.</p>
 				<div class="hero-actions">
-					  <a class="button" href="#orcamento">Get a free quote <span aria-hidden="true">&nbsp;↗</span></a>
+					<a class="button" href="#orcamento">Get a free quote <span aria-hidden="true">&nbsp;↗</span></a>
 				</div>
 			</div>
 		</section>
@@ -313,35 +574,89 @@
 		<section class="transform" id="transformacao" aria-labelledby="transform-title">
 			<div class="container">
 				<div class="section-heading">
-					  <div><span class="eyebrow">Before and after</span><h2 id="transform-title">The difference is underfoot.</h2></div>
-					  <p>A new surface can transform the way a space is seen and experienced.</p>
+					<div>
+						<span class="eyebrow">Before and after</span>
+						<h2 id="transform-title">The difference is underfoot.</h2>
+					</div>
+					<p>A new surface can transform the way a space is seen and experienced.</p>
 				</div>
 				<div class="compare-grid">
-					  <figure class="compare-card"><img src="images/before-01.gif" alt="Space before epoxy flooring installation"><figcaption class="compare-label">Before</figcaption></figure>
-					  <figure class="compare-card after"><img src="images/after-01.gif" alt="Space after epoxy flooring installation"><figcaption class="compare-label">After</figcaption></figure>
+					<figure class="compare-card">
+						<img src="images/before-01.gif" alt="Space before epoxy flooring installation">
+						<figcaption class="compare-label">Before</figcaption>
+					</figure>
+					<figure class="compare-card after">
+						<img src="images/after-01.gif" alt="Space after epoxy flooring installation">
+						<figcaption class="compare-label">After</figcaption>
+					</figure>
 				</div>
 			</div>
 		</section>
 
 		<section class="container process" id="processo" aria-labelledby="process-title">
-			<div class="section-heading"><div><span class="eyebrow">Our process</span><h2 id="process-title">Precision in every layer.</h2></div><p>A clear method, selected materials and a team that respects your space.</p></div>
+			<div class="section-heading">
+				<div>
+					<span class="eyebrow">Our process</span>
+					<h2 id="process-title">Precision in every layer.</h2>
+				</div>
+				<p>A clear method, selected materials and a team that respects your space.</p>
+			</div>
 			<div class="process-grid">
-				<article class="process-card"><img src="images/grinding-01.gif" alt="Surface preparation with professional grinding equipment"><span class="process-number">01 / PREPARATION</span><h3>Surface Preparation</h3><p>Professional grinding creates the ideal surface profile for epoxy adhesion.</p></article>
-				<article class="process-card"><img src="images/preparation.jpg" alt="Detailed preparation of the concrete substrate"><span class="process-number">02 / PREPARATION</span><h3>Detailed Preparation</h3><p>Surface defects are corrected and the substrate is prepared for coating.</p></article>
-				<article class="process-card"><img src="images/application-01.gif" alt="Precise epoxy application by a professional operator"><span class="process-number">03 / APPLICATION</span><h3>Epoxy Application</h3><p>Premium coatings are applied with precision and consistency.</p></article>
-				<article class="process-card"><img src="images/featured-project.jpg" alt="Finished premium epoxy floor"><span class="process-number">04 / FINAL RESULT</span><h3>Final Result</h3><p>A durable, premium finish designed to impress and perform.</p></article>
+				<article class="process-card">
+					<img src="images/grinding-01.gif" alt="Surface preparation with professional grinding equipment">
+					<span class="process-number">01 / PREPARATION</span>
+					<h3>Surface Preparation</h3>
+					<p>Professional grinding creates the ideal surface profile for epoxy adhesion.</p>
+				</article>
+				<article class="process-card">
+					<img src="images/preparation.jpg" alt="Detailed preparation of the concrete substrate">
+					<span class="process-number">02 / PREPARATION</span>
+					<h3>Detailed Preparation</h3>
+					<p>Surface defects are corrected and the substrate is prepared for coating.</p>
+				</article>
+				<article class="process-card">
+					<img src="images/application-01.gif" alt="Precise epoxy application by a professional operator">
+					<span class="process-number">03 / APPLICATION</span>
+					<h3>Epoxy Application</h3>
+					<p>Premium coatings are applied with precision and consistency.</p>
+				</article>
+				<article class="process-card">
+					<img src="images/featured-project.jpg" alt="Finished premium epoxy floor">
+					<span class="process-number">04 / FINAL RESULT</span>
+					<h3>Final Result</h3>
+					<p>A durable, premium finish designed to impress and perform.</p>
+				</article>
 			</div>
 		</section>
 
 		<section class="featured" id="projeto" aria-labelledby="project-title">
-				<div class="container featured-layout">
-					<div class="featured-image"><img src="images/featured-project.jpg" alt="Residential project with a sophisticated epoxy floor finish"></div>
-					<div><span class="eyebrow">Featured project</span><h2 id="project-title">Premium Residential Garage</h2><p>A high-gloss mineral floor for a home that calls for continuity. The result: light, spaciousness and a texture that speaks to the architecture.</p><div class="project-meta"><div><span>Location</span><strong>Brisbane, QLD</strong></div></div><a class="button" href="#orcamento">I want something like this <span aria-hidden="true">&nbsp;↗</span></a></div>
+			<div class="container featured-layout">
+				<div class="featured-image">
+					<img src="images/featured-project.jpg" alt="Residential project with a sophisticated epoxy floor finish">
 				</div>
+				<div>
+					<span class="eyebrow">Featured project</span>
+					<h2 id="project-title">Premium Residential Garage</h2>
+					<p>A high-gloss mineral floor for a home that calls for continuity. The result: light, spaciousness and a texture that speaks to the architecture.</p>
+					<div class="project-meta">
+						<div>
+							<span>Location</span>
+							<strong>Brisbane, QLD</strong>
+						</div>
+					</div>
+					<a class="button" href="#orcamento">I want something like this <span aria-hidden="true">&nbsp;↗</span></a>
+				</div>
+			</div>
 		</section>
 
 		<section class="container gallery" id="galeria" aria-labelledby="gallery-title">
-			<div class="section-heading"><div><span class="eyebrow">Portfolio</span><h2 id="gallery-title">Surfaces with personality.</h2></div><p>Explore some of the spaces given a new perspective with Pure Epoxy.</p></div>
+			<div class="section-heading">
+				<div>
+					<span class="eyebrow">Portfolio</span>
+					<h2 id="gallery-title">Surfaces with personality.</h2>
+				</div>
+				<p>Explore some of the spaces given a new perspective with Pure Epoxy.</p>
+			</div>
 			<div class="gallery-grid">
 				<figure><img src="images/gallery-01.jpg" alt="Epoxy project detail in a spacious setting"></figure>
 				<figure><img src="images/gallery-02.jpg" alt="Epoxy floor in a commercial space"></figure>
@@ -352,23 +667,43 @@
 
 		<section class="quote" id="orcamento" aria-labelledby="quote-title">
 			<div class="container quote-layout">
-				<div class="quote-intro"><span class="eyebrow">Let’s talk</span><h2 id="quote-title">Your next space starts here.</h2><p>Tell us a little about your project. We’ll come back to you with an initial estimate and the next steps.</p></div>
+				<div class="quote-intro">
+					<span class="eyebrow">Let’s talk</span>
+					<h2 id="quote-title">Your next space starts here.</h2>
+					<p>Tell us a little about your project. We’ll come back to you with an initial estimate and the next steps.</p>
+				</div>
 				<form id="quote-form" action="https://formsubmit.co/pureepoxy.au@gmail.com" method="POST">
 					<input type="hidden" name="_subject" value="New PURE Epoxy Quote Request">
 					<input type="hidden" name="_next" value="https://pureepoxyau.github.io/pure-epoxy/thanks.html">
 					<input type="hidden" name="_captcha" value="false">
-					  <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
-					  <div class="field"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-					<div class="field"><label for="phone">WhatsApp</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
-					  <div class="field"><label for="area">Approximate area</label><input id="area" name="area" type="text" placeholder="E.g. 80 m²"></div>
-					  <div class="field full"><label for="message">Tell us about the project</label><textarea id="message" name="message" required></textarea></div>
-					  <button class="button" type="submit">Request a quote <span aria-hidden="true">&nbsp;↗</span></button>
+					<div class="field">
+						<label for="name">Your name</label>
+						<input id="name" name="name" type="text" autocomplete="name" required>
+					</div>
+					<div class="field">
+						<label for="email">Your email</label>
+						<input id="email" name="email" type="email" autocomplete="email" required>
+					</div>
+					<div class="field">
+						<label for="phone">WhatsApp</label>
+						<input id="phone" name="phone" type="tel" autocomplete="tel" required>
+					</div>
+					<div class="field">
+						<label for="area">Approximate area</label>
+						<input id="area" name="area" type="text" placeholder="E.g. 80 m²">
+					</div>
+					<div class="field full">
+						<label for="message">Tell us about the project</label>
+						<textarea id="message" name="message" required></textarea>
+					</div>
+					<button class="button" type="submit">Request a quote <span aria-hidden="true">&nbsp;↗</span></button>
 					<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
 				</form>
 			</div>
 		</section>
 	</main>
 
+	<!-- Botão Flutuante do WhatsApp -->
 	<a class="whatsapp" href="https://wa.me/61435992512" target="_blank" rel="noopener" aria-label="Chat with Pure Epoxy on WhatsApp">
 		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a9.8 9.8 0 0 0-8.49 14.72L2 22l5.44-1.43A9.8 9.8 0 1 0 12 2Zm0 17.9a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.23.85.86-3.15-.2-.32A8.1 8.1 0 1 1 12 19.9Zm4.44-6.08c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.63.78-.77.94-.14.16-.28.18-.52.06-1.4-.7-2.32-1.25-3.24-2.83-.24-.41.24-.38.69-1.27.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.68 2.57 4.07 3.6 1.51.65 2.1.7 2.85.59.46-.07 1.43-.59 1.63-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"></path></svg>
 		WhatsApp
@@ -376,31 +711,62 @@
 
 	<footer>
 		<div class="container">
-			<div class="footer-top"><div><img class="footer-logo" src="images/logo.png" alt="Pure Epoxy"><p>Flooring that transforms the way a space is experienced.</p></div><div class="footer-links"><a href="#inicio">Home</a><a href="#processo">Process</a><a href="#galeria">Projects</a><a href="#orcamento">Contact</a></div><div class="footer-social"><a class="instagram" href="https://www.instagram.com/pure_epoxy/reels/" target="_blank" rel="noopener" aria-label="Follow Pure Epoxy on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg><span>Follow Us</span></a><a class="facebook" href="https://www.facebook.com/pureepoxysouthcoast" target="_blank" rel="noopener" aria-label="Follow Pure Epoxy on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.31 0-5 1.66-5 5v3H6v4h3v8h4v-8h3l1-4h-4V9c0-.67.33-1 1-1Z"></path></svg><span>Follow Us</span></a></div></div>
-			<div class="footer-bottom"><p>© 2024 Pure Epoxy. All rights reserved.</p><p>Brisbane • Gold Coast • Sunshine Coast</p></div>
+			<div class="footer-top">
+				<div>
+					<img class="footer-logo" src="images/logo.png" alt="Pure Epoxy">
+					<p>Flooring that transforms the way a space is experienced.</p>
+				</div>
+				<div class="footer-links">
+					<a href="#inicio">Home</a>
+					<a href="#processo">Process</a>
+					<a href="#galeria">Projects</a>
+					<a href="#orcamento">Contact</a>
+				</div>
+				<div class="footer-social">
+					<a class="instagram" href="https://www.instagram.com/pure_epoxy/reels/" target="_blank" rel="noopener" aria-label="Follow Pure Epoxy on Instagram">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>
+						<span>Follow Us</span>
+					</a>
+					<a class="facebook" href="https://www.facebook.com/pureepoxysouthcoast" target="_blank" rel="noopener" aria-label="Follow Pure Epoxy on Facebook">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.31 0-5 1.66-5 5v3H6v4h3v8h4v-8h3l1-4h-4V9c0-.67.33-1 1-1Z"></path></svg>
+						<span>Follow Us</span>
+					</a>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>© 2024 Pure Epoxy. All rights reserved.</p>
+				<p>Brisbane • Gold Coast • Sunshine Coast</p>
+			</div>
 		</div>
 	</footer>
+
 	<script>
 		const fixedHeader = document.querySelector('header');
 		const mobileMenuToggle = document.querySelector('#mobile-menu-toggle');
 		const mobileNav = document.querySelector('#mobile-nav');
+
 		const closeMobileMenu = () => {
 			mobileNav.classList.remove('is-open');
 			mobileMenuToggle.setAttribute('aria-expanded', 'false');
 			mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
 		};
+
 		mobileMenuToggle.addEventListener('click', () => {
 			const isOpen = mobileNav.classList.toggle('is-open');
 			mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
 			mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
 		});
+
 		mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMobileMenu));
+
 		document.addEventListener('click', (event) => {
 			if (!mobileNav.contains(event.target) && !mobileMenuToggle.contains(event.target)) closeMobileMenu();
 		});
+
 		document.addEventListener('keydown', (event) => {
 			if (event.key === 'Escape') closeMobileMenu();
 		});
+
 		document.querySelectorAll('a[href^="#"]').forEach((link) => {
 			link.addEventListener('click', (event) => {
 				const target = document.querySelector(link.getAttribute('href'));
@@ -412,20 +778,33 @@
 				history.pushState(null, '', link.getAttribute('href'));
 			});
 		});
+
+		// Configuração da Tela de Introdução (Splash)
 		const introSplash = document.querySelector('#intro-splash');
+		
 		const hideIntro = () => {
 			introSplash.classList.add('is-hidden');
 			sessionStorage.setItem('pure-epoxy-intro-seen', 'true');
 		};
+
 		if (sessionStorage.getItem('pure-epoxy-intro-seen') === 'true') {
 			introSplash.classList.add('is-hidden');
 		} else {
-			introSplash.addEventListener('click', hideIntro, { once: true });
+			// Fechamento automático inteligente após 1.5 segundos para não travar a experiência do usuário
+			const autoTimer = setTimeout(hideIntro, 1500);
+
+			introSplash.addEventListener('click', () => {
+				clearTimeout(autoTimer);
+				hideIntro();
+			}, { once: true });
+
 			introSplash.addEventListener('keydown', (event) => {
-				if (event.key === 'Enter' || event.key === ' ') hideIntro();
+				if (event.key === 'Enter' || event.key === ' ') {
+					clearTimeout(autoTimer);
+					hideIntro();
+				}
 			});
 		}
-		
 	</script>
 </body>
 </html>
