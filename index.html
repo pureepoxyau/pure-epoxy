@@ -346,7 +346,10 @@
 		<section class="quote" id="orcamento" aria-labelledby="quote-title">
 			<div class="container quote-layout">
 				<div class="quote-intro"><span class="eyebrow">Let’s talk</span><h2 id="quote-title">Your next space starts here.</h2><p>Tell us a little about your project. We’ll come back to you with an initial estimate and the next steps.</p></div>
-				<form id="quote-form">
+				<form id="quote-form" action="https://formsubmit.co/pureepoxy.au@gmail.com" method="POST">
+					<input type="hidden" name="_subject" value="New PURE Epoxy Quote Request">
+					<input type="hidden" name="_next" value="https://pureepoxyau.github.io/pure-epoxy/">
+					<input type="hidden" name="_captcha" value="false">
 					  <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
 					  <div class="field"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
 					<div class="field"><label for="phone">WhatsApp</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
@@ -415,13 +418,7 @@
 				if (event.key === 'Enter' || event.key === ' ') hideIntro();
 			});
 		}
-		const form = document.querySelector('#quote-form');
-		const status = document.querySelector('#form-status');
-		form.addEventListener('submit', (event) => {
-			event.preventDefault();
-			status.textContent = 'We have received your enquiry. Our team will be in touch soon.';
-			form.reset();
-		});
+		
 	</script>
 </body>
 </html>
