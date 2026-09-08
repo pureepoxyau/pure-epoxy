@@ -538,7 +538,9 @@
 		}
 		.whatsapp svg { width: 18px; height: 18px; fill: currentColor; }
 
-		/* Seção do Simulador */
+		/* ==========================================
+		   Seção do Simulador Multi-Categorias Premium
+		   ========================================== */
 		.simulator {
 			background: var(--cream);
 			padding: 80px 0;
@@ -546,121 +548,195 @@
 		}
 		.simulator-layout {
 			display: grid;
-			grid-template-columns: 1.25fr 0.75fr;
+			grid-template-columns: 1.22fr 0.78fr;
 			gap: 40px;
-			margin-top: 30px;
+			margin-top: 35px;
 		}
 		.simulator-view {
 			position: relative;
 			background: #111413;
-			border-radius: 8px;
+			border-radius: 6px;
 			overflow: hidden;
-			height: 480px;
-			box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+			height: 490px;
+			box-shadow: 0 12px 36px rgba(0,0,0,0.06);
 			border: 1px solid var(--line);
 		}
 		.simulator-view img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			transition: opacity 0.25s ease;
+			transition: opacity 0.3s ease;
 		}
+		/* Overlay elegante para imagens pendentes (evita links quebrados no site) */
+		.simulator-overlay-msg {
+			position: absolute;
+			inset: 0;
+			background: rgba(17, 20, 19, 0.94);
+			backdrop-filter: blur(8px);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 30px;
+			color: #fff;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+			z-index: 2;
+		}
+		.simulator-overlay-msg.is-active { opacity: 1; pointer-events: auto; }
+		.simulator-overlay-msg h3 {
+			font-family: Arial, sans-serif;
+			font-size: 26px;
+			color: #C9A24A;
+			margin: 10px 0 14px;
+			letter-spacing: -.02em;
+		}
+		.simulator-overlay-msg p {
+			font-family: Georgia, serif;
+			font-size: 15px;
+			color: rgba(255,255,255,0.7);
+			max-width: 320px;
+			line-height: 1.55;
+			margin: 0;
+		}
+		/* Spinner de transição visual */
 		.simulator-loading {
 			position: absolute;
 			inset: 0;
-			background: rgba(17, 20, 19, 0.85);
+			background: rgba(17, 20, 19, 0.75);
 			color: #fff;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			font: 700 11px 'Montserrat', sans-serif;
+			font: 700 11px Arial, sans-serif;
 			text-transform: uppercase;
 			letter-spacing: .15em;
 			opacity: 0;
 			pointer-events: none;
 			transition: opacity 0.2s ease;
+			z-index: 3;
 		}
 		.simulator-loading.is-active { opacity: 1; }
+		/* Painel lateral de controle */
 		.simulator-controls {
 			background: #fff;
-			padding: 30px;
-			border-radius: 8px;
+			padding: 35px;
+			border-radius: 6px;
 			box-shadow: 0 10px 30px rgba(0,0,0,0.02);
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			border: 1px solid var(--line);
 		}
-		.control-group { margin-bottom: 24px; }
+		.control-group { margin-bottom: 28px; }
 		.control-group h3 {
 			font-size: 11px;
+			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: .12em;
 			margin-bottom: 16px;
 			color: var(--muted);
 		}
-		.style-selectors {
-			display: flex;
-			flex-direction: column;
+		/* Seletores horizontais (Abas) */
+		.category-tabs {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 6px;
+			background: var(--cream);
+			padding: 5px;
+			border-radius: 30px;
+			border: 1px solid var(--line);
+		}
+		.category-tab {
+			background: transparent;
+			border: none;
+			padding: 12px 6px;
+			border-radius: 25px;
+			font: 700 11px Arial, sans-serif;
+			text-transform: uppercase;
+			letter-spacing: .05em;
+			color: var(--muted);
+			cursor: pointer;
+			transition: all 0.25s ease;
+			text-align: center;
+		}
+		.category-tab:hover { color: var(--ink); }
+		.category-tab.active {
+			background: var(--ink);
+			color: #fff;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+		}
+		/* Seletores de cores em grade compacta */
+		.color-options-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
 			gap: 12px;
 		}
-		.style-btn {
+		.color-option {
 			display: flex;
 			align-items: center;
-			gap: 16px;
+			gap: 12px;
 			background: transparent;
 			border: 1px solid var(--line);
-			padding: 16px 20px;
+			padding: 14px 16px;
 			border-radius: 6px;
+			cursor: pointer;
+			transition: all 0.25s ease;
 			width: 100%;
 			text-align: left;
-			cursor: pointer;
-			transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 		}
-		.style-btn div {
-			display: flex;
-			flex-direction: column;
-			gap: 2px;
-		}
-		.style-btn strong {
-			font-family: 'Montserrat', sans-serif;
-			font-size: 14px;
-			font-weight: 700;
-			color: var(--ink);
-		}
-		.style-btn .sub-label {
-			font-family: 'Inter', sans-serif;
-			font-size: 12px;
-			color: var(--muted);
-		}
-		.color-swatch {
-			width: 20px;
-			height: 20px;
+		.color-swatch-circle {
+			width: 18px;
+			height: 18px;
 			border-radius: 50%;
 			display: inline-block;
 			flex-shrink: 0;
-			box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+			box-shadow: inset 0 1.5px 3px rgba(0,0,0,0.15);
 		}
-		.style-btn:hover {
+		.color-option-text {
+			font-family: Arial, sans-serif;
+			font-size: 13px;
+			font-weight: 700;
+			color: var(--ink);
+		}
+		.color-option:hover {
 			border-color: var(--orange);
 			background: var(--cream);
 		}
-		.style-btn.active {
+		.color-option.active {
 			border-color: var(--orange);
 			background: var(--cream);
-			box-shadow: 0 4px 15px rgba(229, 179, 58, 0.15);
+			box-shadow: 0 3px 12px rgba(229, 179, 58, 0.12);
 		}
+		/* Detalhes de CTA */
 		.simulator-cta-box {
 			border-top: 1px solid var(--line);
-			padding-top: 20px;
+			padding-top: 25px;
+			margin-top: 10px;
 		}
-		.simulator-cta-box p {
-			font-size: 13px;
+		.selection-summary {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 18px;
+			gap: 4px;
+		}
+		.summary-label {
+			font: 700 10px Arial, sans-serif;
+			letter-spacing: .08em;
+			text-transform: uppercase;
 			color: var(--muted);
-			margin-bottom: 14px;
-			line-height: 1.5;
 		}
-		.simulator-cta-box .button { width: 100%; }
+		.selection-summary strong {
+			font-family: Georgia, serif;
+			font-size: 19px;
+			color: var(--ink);
+		}
+		.simulator-cta-box .button {
+			width: 100%;
+			min-height: 52px;
+		}
 
 		/* Otimizações Responsivas para Celular */
 		@media (max-width: 767px) {
@@ -737,10 +813,18 @@
 			/* Responsividade do Simulador no Celular */
 			.simulator-layout {
 				grid-template-columns: 1fr;
-				gap: 20px;
+				gap: 24px;
 			}
-			.simulator-view { height: 280px; }
-			.simulator-controls { padding: 20px; }
+			.simulator-view { height: 310px; }
+			.simulator-controls { padding: 24px; }
+			.category-tab {
+				font-size: 10px;
+				padding: 10px 4px;
+			}
+			.color-options-grid {
+				grid-template-columns: 1fr;
+				gap: 10px;
+			}
 			/* Adicionar dentro de @media (max-width: 767px) */
 			.brand img {
 				width: 78px !important;   /* Aumenta consideravelmente o tamanho do logo no topo */
@@ -916,50 +1000,70 @@
 			</div>
 		</section>
 
-		<!-- Seção do Simulador Virtual (Showroom) -->
-		<!-- Seção do Simulador Virtual (Showroom Curado) -->
+		<!-- Seção do Simulador Virtual Multi-Categorias Premium -->
 		<section class="simulator" id="simulador" aria-labelledby="simulator-title">
 			<div class="container">
 				<div class="section-heading">
 					<div>
-						<span class="eyebrow">Interactive Showroom</span>
-						<h2 id="simulator-title">Visualize the premium finish.</h2>
+						<span class="eyebrow">Virtual Showroom</span>
+						<h2 id="simulator-title">Visualise your space.</h2>
 					</div>
-					<p>Compare our elite floor concepts and see how different coatings transform residential and commercial environments.</p>
+					<p>Select an environment and color concept below to see how our premium epoxy coatings transform the space.</p>
 				</div>
 
 				<div class="simulator-layout">
-					<!-- Visualizador de Imagem -->
+					<!-- Visualizador de Imagem Interativo com Proteção contra Erros -->
 					<div class="simulator-view">
-						<img id="simulator-image" src="images/sim-garage-charcoal.jpg" alt="Premium Epoxy Floor Simulation">
+						<img id="simulator-image" src="images/sim-garage-grey.jpg" alt="Premium Epoxy Floor Simulation">
+						<div class="simulator-overlay-msg" id="simulator-overlay-msg">
+							<span class="eyebrow" style="color: #E5B33A;">Premium Concept</span>
+							<h3>Coming Soon</h3>
+							<p>This design concept is currently being finalized by our architectural team. Contact us to request a custom sample.</p>
+						</div>
 						<div class="simulator-loading" id="simulator-loading">Updating view...</div>
 					</div>
 
-					<!-- Painel de Controle de Opções -->
+					<!-- Painel de Controle Avançado -->
 					<div class="simulator-controls">
+						<!-- Passo 1: Escolher o Ambiente -->
 						<div class="control-group">
-							<h3>Select Concept</h3>
-							<div class="style-selectors">
-								<button type="button" class="style-btn active" data-image="sim-garage-charcoal" data-label="Residential Garage (Carbon Charcoal)">
-									<span class="color-swatch" style="background: #34373c;"></span>
-									<div>
-										<strong>Residential Garage</strong>
-										<span class="sub-label">Carbon Charcoal Finish</span>
-									</div>
+							<h3>1. Select Environment</h3>
+							<div class="category-tabs">
+								<button type="button" class="category-tab active" data-category="garage">Garage</button>
+								<button type="button" class="category-tab" data-category="commercial">Commercial</button>
+								<button type="button" class="category-tab" data-category="interior">Living Room</button>
+							</div>
+						</div>
+
+						<!-- Passo 2: Escolher o Acabamento/Cor -->
+						<div class="control-group">
+							<h3>2. Select Finish Concept</h3>
+							<div class="color-options-grid">
+								<button type="button" class="color-option active" data-color="grey" data-label="Classic Grey">
+									<span class="color-swatch-circle" style="background: #9fa1a6;"></span>
+									<span class="color-option-text">Classic Grey</span>
 								</button>
-								<button type="button" class="style-btn" data-image="sim-commercial-grey" data-label="Commercial Showroom (Classic Grey)">
-									<span class="color-swatch" style="background: #9fa1a6;"></span>
-									<div>
-										<strong>Commercial Showroom</strong>
-										<span class="sub-label">Classic Grey Finish</span>
-									</div>
+								<button type="button" class="color-option" data-color="charcoal" data-label="Carbon Charcoal">
+									<span class="color-swatch-circle" style="background: #34373c;"></span>
+									<span class="color-option-text">Carbon Charcoal</span>
+								</button>
+								<button type="button" class="color-option" data-color="gold" data-label="Sandstone Gold">
+									<span class="color-swatch-circle" style="background: #c5a059;"></span>
+									<span class="color-option-text">Sandstone Gold</span>
+								</button>
+								<button type="button" class="color-option" data-color="white" data-label="Elite White">
+									<span class="color-swatch-circle" style="background: #f3f4f6; border: 1px solid #d1d5db;"></span>
+									<span class="color-option-text">Elite White</span>
 								</button>
 							</div>
 						</div>
 
 						<div class="simulator-cta-box">
-							<p>Loved one of these styles? Send your preference to our team for a personalized quote.</p>
-							<a href="#orcamento" id="simulator-quote-btn" class="button">Quote this concept <span aria-hidden="true">&nbsp;↗</span></a>
+							<div class="selection-summary">
+								<span class="summary-label">Selected Design:</span>
+								<strong id="summary-text">Garage - Classic Grey</strong>
+							</div>
+							<a href="#orcamento" id="simulator-quote-btn" class="button">Quote this design <span aria-hidden="true">&nbsp;↗</span></a>
 						</div>
 					</div>
 				</div>
@@ -1094,50 +1198,89 @@
 			if (event.key === 'Enter' || event.key === ' ') hideIntro();
 		});
 
-		// Funcionalidade do Showroom / Simulador Virtual Curado
+		// ===================================================
+		// Lógica do Simulador Multi-Categorias Premium (Showroom)
+		// ===================================================
 		const simImage = document.getElementById('simulator-image');
 		const simLoading = document.getElementById('simulator-loading');
-		const styleBtns = document.querySelectorAll('.style-btn');
-		const messageTextarea = document.getElementById('message');
+		const simOverlay = document.getElementById('simulator-overlay-msg');
+		const categoryTabs = document.querySelectorAll('.category-tab');
+		const colorOptions = document.querySelectorAll('.color-option');
+		const summaryText = document.getElementById('summary-text');
+		const messageInput = document.getElementById('message');
 
-		const updateSimulation = (imageName, label) => {
-			// 1. Ativa efeito de transição visual suave
-			simLoading.classList.add('is-active');
-			simImage.style.opacity = '0.4';
+		// Estado de Controle Inicial do Simulador
+		let selectedCategory = 'garage';
+		let selectedColor = 'grey';
+		let selectedLabel = 'Classic Grey';
 
-			// 2. Constrói o caminho da imagem baseado na seleção
-			const newSrc = `images/${imageName}.jpg`;
+		// Imagens fisicamente prontas e disponíveis no servidor (Evita broken links)
+		const availableImages = {
+			'garage-grey': 'images/sim-garage-grey.jpg',
+			'garage-charcoal': 'images/sim-garage-charcoal.jpg',
+			'garage-gold': 'images/sim-garage-gold.jpg',
+			'commercial-grey': 'images/sim-commercial-grey.jpg'
+		};
 
-			// 3. Pré-carrega a imagem na memória antes de exibir
-			const tempImg = new Image();
-			tempImg.src = newSrc;
-			tempImg.onload = () => {
-				simImage.src = newSrc;
+		const updateSimulatorView = () => {
+			const key = `${selectedCategory}-${selectedColor}`;
+			const hasImage = availableImages[key] !== undefined;
+			const categoryLabel = selectedCategory === 'garage' ? 'Garage' : selectedCategory === 'commercial' ? 'Commercial' : 'Living Room';
+			summaryText.textContent = `${categoryLabel} - ${selectedLabel}`;
+
+			simOverlay.classList.remove('is-active');
+
+			if (hasImage) {
+				simLoading.classList.add('is-active');
+				simImage.style.opacity = '0.3';
+
+				const tempImg = new Image();
+				tempImg.src = availableImages[key];
+				tempImg.onload = () => {
+					simImage.src = availableImages[key];
+					simImage.style.opacity = '1';
+					simLoading.classList.remove('is-active');
+				};
+				tempImg.onerror = () => {
+					simImage.style.opacity = '1';
+					simLoading.classList.remove('is-active');
+				};
+			} else {
 				simImage.style.opacity = '1';
 				simLoading.classList.remove('is-active');
-			};
-			tempImg.onerror = () => {
-				simImage.style.opacity = '1';
-				simLoading.classList.remove('is-active');
-			};
+				simOverlay.classList.add('is-active');
+			}
 
-			// 4. Inteligência: Atualiza a caixa de texto do orçamento com a escolha do cliente
-			if (messageTextarea) {
-				messageTextarea.value = `Hi! I used the Virtual Showroom on your website. I'm highly interested in getting a quote based on your premium showcase concept: "${label}".`;
+			// Integração Inteligente: preenche automaticamente a mensagem de orçamento do cliente!
+			if (messageInput) {
+				messageInput.value = `Hi! I used the Virtual Showroom on your website. I'm highly interested in getting a custom quote for my project based on the design concept: "${categoryLabel} - ${selectedLabel}".`;
 			}
 		};
 
-		// Monitora cliques nos botões de conceito
-		styleBtns.forEach(btn => {
-			btn.addEventListener('click', () => {
-				styleBtns.forEach(b => b.classList.remove('active'));
-				btn.classList.add('active');
-
-				const targetImage = btn.dataset.image;
-				const targetLabel = btn.dataset.label;
-
-				updateSimulation(targetImage, targetLabel);
+		// Captura cliques nas Abas de Categorias (Garage, Commercial, Living Room)
+		categoryTabs.forEach(tab => {
+			tab.addEventListener('click', () => {
+				categoryTabs.forEach(t => t.classList.remove('active'));
+				tab.classList.add('active');
+				selectedCategory = tab.dataset.category;
+				updateSimulatorView();
 			});
+		});
+
+		// Captura cliques nas Opções de Cores
+		colorOptions.forEach(opt => {
+			opt.addEventListener('click', () => {
+				colorOptions.forEach(o => o.classList.remove('active'));
+				opt.classList.add('active');
+				selectedColor = opt.dataset.color;
+				selectedLabel = opt.dataset.label;
+				updateSimulatorView();
+			});
+		});
+
+		// Inicialização automática do simulador ao carregar a página
+		document.addEventListener('DOMContentLoaded', () => {
+			updateSimulatorView();
 		});
 	</script>
 </body>
