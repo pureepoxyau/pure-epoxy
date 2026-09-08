@@ -53,7 +53,7 @@
 		html { scroll-behavior: smooth; scroll-padding-top: 180px; }
 		section { scroll-margin-top: 180px; }
 
-		/* Tela de Entrada - Layout Clássico com Brilho Dourado Horizontal */
+		/* Tela de Entrada */
 		.intro-splash {
 			position: fixed;
 			z-index: 20;
@@ -61,8 +61,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			/* O marcador de versão força o celular a baixar a imagem nova na hora */
-			background: #000 url('images/PURE_EPOXY_6S_MOVIMENTO_REFINADO.gif?v=2') center / cover no-repeat;
+			background: #000 url('images/intro.gif') center / cover no-repeat;
 			color: #fff;
 			cursor: pointer;
 			transition: opacity .45s ease, visibility .45s ease;
@@ -71,66 +70,37 @@
 			content: ''; 
 			position: absolute; 
 			inset: 0; 
-			background: rgba(0, 0, 0, .58);
+			background: rgba(0, 0, 0, .62);
 			z-index: 1;
 		}
 		.intro-splash::after {
-			content: '';
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 50%;
-			transform: translateY(-50%);
-			height: 3px;
-			background: linear-gradient(90deg,
-				rgba(229, 179, 58, 0) 0%,
-				rgba(229, 179, 58, 0.4) 25%,
-				rgba(255, 220, 120, 0.95) 50%,
-				rgba(229, 179, 58, 0.4) 75%,
-				rgba(229, 179, 58, 0) 100%
-			);
-			box-shadow: 0 0 15px rgba(229, 179, 58, 0.7),
-				0 0 30px rgba(229, 179, 58, 0.4);
-			opacity: 0.85;
-			pointer-events: none;
-			z-index: 2;
-			animation: goldenBeamPulse 3.5s infinite alternate ease-in-out;
+			display: none !important;
 		}
-
-		/* BOTÃO ENTER: Posicionamento absoluto abaixo da marca da empresa */
 		.intro-splash span { 
-			position: absolute; 
-			bottom: 15%;
-			z-index: 1; 
+			position: relative !important;
+			bottom: auto !important;
+			left: auto !important;
+			transform: none !important;
+			z-index: 2;
 			font: 700 12px Arial, sans-serif; 
-			letter-spacing: .22em; 
+			letter-spacing: .18em; 
 			text-transform: uppercase;
-			border: 1px solid rgba(255, 255, 255, 0.35);
-			padding: 14px 38px;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			padding: 14px 32px;
 			border-radius: 4px;
-			background: rgba(0, 0, 0, 0.45);
+			background: rgba(0, 0, 0, 0.4);
 			backdrop-filter: blur(3px);
 			transition: all 0.3s ease;
 		}
 		.intro-splash:hover span {
-			border-color: var(--orange);
-			color: var(--orange);
-			background: rgba(0, 0, 0, 0.75);
+			border-color: rgba(255, 255, 255, 0.8);
+			background: rgba(0, 0, 0, 0.6);
 		}
-
-		/* Animação que faz a linha dourada pulsar */
-		@keyframes goldenBeamPulse {
-			from {
-				opacity: 0.45;
-				filter: blur(1px);
-			}
-			to {
-				opacity: 0.9;
-				filter: blur(0px);
-			}
+		.intro-splash.is-hidden {
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
 		}
-
-		.intro-splash.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
 		/* Tipografia e Estrutura Geral */
 		body {
@@ -832,16 +802,18 @@
 				background: rgba(17, 20, 19, 0.6) !important; /* Fundo escuro para dar contraste nas letras */
 				filter: brightness(1.1) !important;
 			}
-			/* Dentro de @media (max-width: 767px), restaurar o comportamento padrão */
+			/* Ajuste para telas de celular */
 			.intro-splash {
-				background: #000 url('images/PURE_EPOXY_6S_MOVIMENTO_REFINADO.gif?v=2') center / contain no-repeat !important;
+				background-size: contain !important;
 				background-position: center center !important;
 			}
 			.intro-splash span {
-				position: absolute !important;
-				bottom: 12% !important;
-				font-size: 11px !important;
-				padding: 12px 34px !important;
+				position: relative !important;
+				bottom: auto !important;
+				left: auto !important;
+				transform: none !important;
+				font-size: 12px !important;
+				padding: 14px 32px !important;
 			}
 		}
 	</style>
