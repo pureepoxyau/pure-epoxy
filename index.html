@@ -61,13 +61,11 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: #000 url('images/intro.gif') center / cover no-repeat;
+			/* O marcador de versão força o celular a baixar a imagem nova na hora */
+			background: #000 url('images/PURE_EPOXY_6S_MOVIMENTO_REFINADO.gif?v=2') center / cover no-repeat;
 			color: #fff;
 			cursor: pointer;
 			transition: opacity .45s ease, visibility .45s ease;
-
-			/* Filtro que deixa o dourado original mais vivo e contrastado */
-			filter: saturate(1.45) brightness(1.12) contrast(1.06);
 		}
 		.intro-splash::before { 
 			content: ''; 
@@ -102,10 +100,8 @@
 		/* BOTÃO ENTER: Posicionamento absoluto abaixo da marca da empresa */
 		.intro-splash span { 
 			position: absolute; 
-			bottom: 90px;
-			left: 50%;
-			transform: translateX(-50%);
-			z-index: 3; 
+			bottom: 15%;
+			z-index: 1; 
 			font: 700 12px Arial, sans-serif; 
 			letter-spacing: .22em; 
 			text-transform: uppercase;
@@ -838,11 +834,12 @@
 			}
 			/* Dentro de @media (max-width: 767px), restaurar o comportamento padrão */
 			.intro-splash {
-				background-size: contain !important;
+				background: #000 url('images/PURE_EPOXY_6S_MOVIMENTO_REFINADO.gif?v=2') center / contain no-repeat !important;
 				background-position: center center !important;
 			}
 			.intro-splash span {
-				bottom: 15% !important;
+				position: absolute !important;
+				bottom: 12% !important;
 				font-size: 11px !important;
 				padding: 12px 34px !important;
 			}
