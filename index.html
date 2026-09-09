@@ -1184,13 +1184,15 @@
 		let selectedLabel = 'Classic Grey';
 
 		// Imagens fisicamente prontas e disponíveis no servidor (Evita broken links)
-		const availableImages = {
-			'garage-grey': 'images/sim-garage-grey.jpg',
-			'garage-charcoal': 'images/sim-garage-charcoal.jpg',
-			'garage-gold': 'images/sim-garage-gold.jpg',
-			'commercial-grey': 'images/sim-commercial-grey.jpg'
-		};
-
+		
+        const availableImages = {
+	       'garage-grey': 'images/sim-garage-grey.jpg',
+	       'garage-charcoal': 'images/sim-garage-charcoal.jpg',
+	       'garage-gold': 'images/sim-garage-gold.jpg',
+	       'garage-white': 'images/sim-garage-white.jpg',        /* Ativado! */
+	       'commercial-grey': 'images/sim-commercial-grey.jpg',
+	       'commercial-charcoal': 'images/sim-commercial-charcoal.jpg' /* Ativado! */
+       };
 		const updateSimulatorView = () => {
 			const key = `${selectedCategory}-${selectedColor}`;
 			const hasImage = availableImages[key] !== undefined;
