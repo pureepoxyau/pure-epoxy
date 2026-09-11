@@ -750,23 +750,36 @@
 				filter: brightness(1.1) !important;
 			}
 
-			/* Ajuste do zoom da introdução no celular */
+			/* Ajuste de enquadramento cinematico da introducao no celular */
 			.intro-splash {
 				background-image: url('images/PURE_EPOXY_INTRO_6S_BOLA_ESQUERDA_DIREITA.gif') !important;
-				background-size: 145% auto !important;
-				background-position: center 38% !important;
+				background-size: 118% auto !important;
+				background-position: center 40% !important;
 				background-color: #000 !important;
 			}
 			.intro-splash::before {
-				background: transparent !important;
+				content: '' !important;
+				position: absolute !important;
+				inset: 0 !important;
+				background: radial-gradient(ellipse at center 40%, transparent 50%, #000 92%) !important;
+				pointer-events: none !important;
+				z-index: 1 !important;
 			}
 			.intro-splash span {
 				position: absolute !important;
 				bottom: 12% !important;
 				left: 50% !important;
 				transform: translateX(-50%) !important;
-				font-size: 12px !important;
-				padding: 12px 30px !important;
+				font-size: 11px !important;
+				letter-spacing: .2em !important;
+				padding: 13px 32px !important;
+				border: 1px solid rgba(229, 179, 58, 0.5) !important;
+				background: rgba(0, 0, 0, 0.65) !important;
+				color: #fff !important;
+				border-radius: 4px !important;
+				backdrop-filter: blur(4px) !important;
+				box-shadow: 0 0 15px rgba(229, 179, 58, 0.2) !important;
+				z-index: 2 !important;
 			}
 		}
 	</style>
