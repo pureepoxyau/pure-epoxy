@@ -577,17 +577,21 @@
 			text-align: center;
 		}
 		.footer-logo {
-			width: 80px;
-			height: 80px;
-			object-fit: contain;
-			padding: 8px;
+			width: 130px;         /* Logo ampliado e proporcional */
+			height: 130px;        /* Mantém proporção circular perfeita */
+			object-fit: contain;  /* Impede o corte das letras e bordas */
+			padding: 10px;        /* Margem de respiração interna */
 			border-radius: 50%;
 			background: rgba(229, 179, 58, 0.05);
-			border: 2px solid rgba(229, 179, 58, 0.85);
-			box-shadow: 0 0 20px rgba(229, 179, 58, 0.3);
+			border: 2.5px solid rgba(229, 179, 58, 0.85); /* Moldura dourada elegante */
+			box-shadow: 0 0 25px rgba(229, 179, 58, 0.35); /* Glow dourado de destaque */
 			filter: brightness(1.1);
-			margin: 0 auto 16px;
+			margin: 0 auto 18px;
 			display: block;
+			transition: transform 0.3s ease;
+		}
+		.footer-logo:hover {
+			transform: scale(1.05);
 		}
 		.footer-top p { max-width: 250px; color: var(--muted); font-size: 15px; font-weight: 300; }
 		.footer-top > div:first-child p { max-width: 260px; margin-top: 12px; text-align: center; color: var(--muted); }
@@ -675,23 +679,9 @@
 				filter: brightness(1.1) !important;
 			}
 
-			/* OPÇÃO 1: INTRODUÇÃO RESPONSIVA DEDICADA PARA CELULAR (FORMATO VERTICAL 9:16) */
+			/* DESATIVA A TELA DE INTRODUÇÃO NO CELULAR - CARREGAMENTO DIRETO E PERFEITO */
 			.intro-splash {
-				background-image: url('images/PURE_EPOXY_INTRO_6S_BOLA_ESQUERDA_DIREITA.gif') !important;
-				background-size: 130% auto !important;
-				background-position: center 38% !important;
-				background-color: #000 !important;
-			}
-			.intro-splash::before {
-				background: transparent !important; /* Brilho e iluminação originais mantidos */
-			}
-			.intro-splash span {
-				position: absolute !important;
-				bottom: 12% !important;
-				left: 50% !important;
-				transform: translateX(-50%) !important;
-				font-size: 11px !important;
-				padding: 12px 30px !important;
+				display: none !important;
 			}
 
 			.mobile-menu-toggle {
