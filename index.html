@@ -1,58 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pure Epoxy | Premium Flooring Services</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pure Epoxy | Surfaces that elevate a space</title>
+	<meta name="description" content="Premium epoxy flooring for homes, garages and commercial spaces across Queensland.">
 
 	<!-- Meta Tags Open Graph (WhatsApp, Facebook, Instagram) -->
 	<meta property="og:title" content="Pure Epoxy | Premium Flooring Services" />
 	<meta property="og:description" content="Premium epoxy flooring for homes, garages and commercial spaces across Queensland." />
 	<meta property="og:url" content="https://pureepoxyau.github.io/pure-epoxy/" />
 	<meta property="og:type" content="website" />
-
-	<!-- Link da imagem de visualização DEVE ser absoluto -->
 	<meta property="og:image" content="https://pureepoxyau.github.io/pure-epoxy/images/logo.png" />
 	<meta property="og:image:secure_url" content="https://pureepoxyau.github.io/pure-epoxy/images/logo.png" />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="400" />
 	<meta property="og:image:height" content="400" />
 
-	<!-- Meta Tags adicionais para Twitter e outros aplicativos -->
+	<!-- Meta Tags para Twitter -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:title" content="Pure Epoxy | Premium Flooring Services" />
 	<meta name="twitter:description" content="Premium epoxy flooring for homes, garages and commercial spaces across Queensland." />
 	<meta name="twitter:image" content="https://pureepoxyau.github.io/pure-epoxy/images/logo.png" />
 
-	<!-- Favicon Oficial com Link Absoluto e Quebrador de Cache -->
+	<!-- Favicon e Ícone com Quebrador de Cache -->
 	<link rel="icon" type="image/png" href="https://pureepoxyau.github.io/pure-epoxy/images/logo.png?v=2" />
-
-	<!-- Ícone de Celular com Link Absoluto e Quebrador de Cache -->
 	<link rel="apple-touch-icon" href="https://pureepoxyau.github.io/pure-epoxy/images/logo.png?v=2" />
 
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;700;800&display=swap');
 
 		:root {
-			/* Paleta de Cores Premium */
-			--ink: #111413;       /* Grafite ultra escuro */
-			--paper: #FCFBF9;     /* Off-white quente para fundos */
-			--cream: #F5F2EB;     /* Creme suave para seções de contraste */
-			--dark: #191C1B;      /* Cinza escuro para seções destacadas */
-			--muted: #666E6B;     /* Slate gray suave para textos secundários */
-			
-			/* Dourado metálico intenso */
-			--lime: #E5B33A;      /* Dourado vivo */
-			--lime-dark: #C4911E; /* Tom escuro para hover */
-			--orange: #E5B33A;    /* Unifica detalhes decorativos */
-			--line: #E5E2DC;      /* Divisórias sutis */
+			--ink: #111413;
+			--paper: #FCFBF9;
+			--cream: #F5F2EB;
+			--dark: #191C1B;
+			--muted: #666E6B;
+			--lime: #E5B33A;
+			--lime-dark: #C4911E;
+			--orange: #E5B33A;
+			--line: #E5E2DC;
 		}
 
 		* { box-sizing: border-box; }
 		html { scroll-behavior: smooth; scroll-padding-top: 180px; }
 		section { scroll-margin-top: 180px; }
 
-		/* Tela de Entrada */
+		/* Tela de Entrada (Desktop) */
 		.intro-splash {
 			position: fixed;
 			z-index: 20;
@@ -88,16 +82,16 @@
 			font: 700 12px Arial, sans-serif; 
 			letter-spacing: .18em; 
 			text-transform: uppercase;
-			border: 1px solid rgba(255, 255, 255, 0.3);
-			padding: 14px 32px;
+			border: 1px solid rgba(255, 255, 255, 0.35);
+			padding: 14px 34px;
 			border-radius: 4px;
-			background: rgba(0, 0, 0, 0.4);
+			background: rgba(0, 0, 0, 0.45);
 			backdrop-filter: blur(3px);
 			transition: all 0.3s ease;
 		}
 		.intro-splash:hover span {
 			border-color: rgba(255, 255, 255, 0.8);
-			background: rgba(0, 0, 0, 0.6);
+			background: rgba(0, 0, 0, 0.65);
 		}
 		.intro-splash.is-hidden {
 			opacity: 0;
@@ -105,7 +99,7 @@
 			pointer-events: none;
 		}
 
-		/* Tipografia e Estrutura Geral */
+		/* Estrutura Geral */
 		body {
 			margin: 0;
 			color: var(--ink);
@@ -120,7 +114,6 @@
 		a { color: inherit; text-decoration: none; }
 		.container { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
 
-		/* Subtítulos Decorativos */
 		.eyebrow {
 			display: inline-flex;
 			align-items: center;
@@ -132,7 +125,6 @@
 		}
 		.eyebrow::before { content: ''; width: 24px; height: 1px; background: currentColor; }
 
-		/* Botões Modernizados */
 		.button {
 			display: inline-flex;
 			align-items: center;
@@ -158,7 +150,6 @@
 		.button.light { background: transparent; color: var(--ink); }
 		.button.light:hover { color: #fff; }
 
-		/* Cabeçalho de Navegação */
 		header {
 			position: fixed;
 			z-index: 5;
@@ -183,7 +174,6 @@
 			filter: brightness(1.1);
 			transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 		}
-
 		.brand img:hover {
 			transform: scale(1.08);
 			border-color: var(--orange);
@@ -204,7 +194,6 @@
 		}
 		.mobile-menu-toggle, .mobile-nav { display: none; }
 
-		/* Hero Section */
 		.hero {
 			position: relative;
 			min-height: 80vh;
@@ -262,13 +251,11 @@
 			color: #fff; 
 		}
 
-		/* Seção de Introdução */
 		.intro { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; padding: 80px 0 40px; }
 		.intro h2, .section-heading h2 { margin: 16px 0 0; font-size: clamp(2.4rem, 4.5vw, 4.2rem); line-height: 1.05; letter-spacing: -.04em; }
 		.intro-copy { color: var(--muted); font-size: 17px; font-weight: 300; }
 		.intro-copy strong { color: var(--ink); font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
 
-		/* Seção Antes e Depois */
 		.transform { background: var(--cream); padding: 80px 0 40px; }
 		.section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 40px; }
 		.section-heading p { max-width: 350px; margin-bottom: 4px; color: var(--muted); font-size: 16px; font-weight: 300; }
@@ -301,7 +288,6 @@
 			color: var(--ink);
 		}
 
-		/* Seção Processo */
 		.process { padding: 80px 0 40px; }
 		.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 		.process-card { 
@@ -309,9 +295,7 @@
 			padding-top: 24px; 
 			transition: border-color .3s ease;
 		}
-		.process-card:hover {
-			border-top-color: var(--orange);
-		}
+		.process-card:hover { border-top-color: var(--orange); }
 		.process-card img { 
 			width: 100%; 
 			height: 220px; 
@@ -327,7 +311,6 @@
 		.process-card h3 { margin: 16px 0 10px; font-size: 21px; letter-spacing: -.02em; }
 		.process-card p { color: var(--muted); font-size: 15px; font-weight: 300; }
 
-		/* Projeto em Destaque */
 		.featured { background: var(--dark); color: #fff; padding: 90px 0 50px; }
 		.featured-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; }
 		.featured-image { position: relative; overflow: hidden; border-radius: 8px; }
@@ -353,7 +336,6 @@
 		.featured .button { background: var(--orange); border-color: var(--orange); color: var(--ink); }
 		.featured .button:hover { background: #fff; border-color: #fff; color: var(--ink); }
 
-		/* Galeria de Portfólio */
 		.gallery { padding: 80px 0 40px; }
 		.gallery-grid { display: grid; grid-template-columns: 1.35fr .8fr .8fr; grid-template-rows: 220px 220px; gap: 20px; }
 		.gallery-grid figure { 
@@ -368,7 +350,7 @@
 		.gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
 		.gallery-grid figure:hover img { transform: scale(1.06); }
 
-		/* Simulador Virtual Showroom */
+		/* Simulador Showroom */
 		.simulator {
 			background: var(--cream);
 			padding: 80px 0;
@@ -553,7 +535,6 @@
 		}
 		.simulator-cta-box .button { width: 100%; min-height: 52px; }
 
-		/* Seção Orçamento/Contato */
 		.quote { background: var(--dark); color: #fff; padding: 90px 0 50px; }
 		.quote-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
 		.quote h2 { margin: 16px 0; font-size: clamp(2.8rem, 5vw, 4.8rem); line-height: 1.0; letter-spacing: -.04em; color: #fff; }
@@ -587,10 +568,14 @@
 		form .button:hover { background: #fff; border-color: #fff; color: var(--ink); }
 		.form-status { grid-column: 1 / -1; min-height: 20px; color: var(--orange); font: 700 12px 'Montserrat', sans-serif; }
 
-		/* Rodapé e Redes Sociais */
 		footer { background: var(--paper); padding: 70px 0 30px; border-top: 1px solid var(--line); }
 		.footer-top { display: flex; justify-content: space-between; gap: 30px; align-items: start; padding-bottom: 50px; }
-		.footer-top > div:first-child { display: flex; flex-direction: column; align-items: center; text-align: center; }
+		.footer-top > div:first-child {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
 		.footer-logo {
 			width: 80px;
 			height: 80px;
@@ -622,11 +607,17 @@
 			letter-spacing: .08em; 
 			transition: all .3s ease; 
 		}
-		.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 4px 15px rgba(220, 39, 67, 0.2); }
+		.instagram { 
+			background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
+			box-shadow: 0 4px 15px rgba(220, 39, 67, 0.2); 
+		}
 		.instagram:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(220, 39, 67, 0.35); color: #fff; }
 		.instagram svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
 
-		.facebook { background: #1877F2; box-shadow: 0 4px 15px rgba(24, 119, 242, 0.2); }
+		.facebook { 
+			background: #1877F2; 
+			box-shadow: 0 4px 15px rgba(24, 119, 242, 0.2); 
+		}
 		.facebook:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(24, 119, 242, 0.35); color: #fff; }
 		.facebook svg { width: 18px; height: 18px; fill: currentColor; }
 
@@ -640,7 +631,6 @@
 			padding-right: 150px;
 		}
 
-		/* Botão WhatsApp Flutuante */
 		.whatsapp { 
 			position: fixed; 
 			z-index: 10; 
@@ -658,15 +648,52 @@
 			letter-spacing: .08em; 
 			transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
 		}
-		.whatsapp:hover { transform: translateY(-4px); box-shadow: 0 16px 35px rgba(37, 211, 102, 0.45); color: #fff; }
+		.whatsapp:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 16px 35px rgba(37, 211, 102, 0.45);
+			color: #fff;
+		}
 		.whatsapp svg { width: 18px; height: 18px; fill: currentColor; }
 
-		/* Otimizações Responsivas para Celular */
+		/* ==========================================
+		   MEDIA QUERY CORRIGIDA PARA CELULAR (<767px)
+		   ========================================== */
 		@media (max-width: 767px) {
 			html, body { max-width: 100%; overflow-x: hidden; }
 			.container { width: min(100% - 34px, 620px); }
 			nav { display: none; }
 			.nav-wrap { padding-top: 20px; }
+
+			.brand img {
+				width: 78px !important;
+				height: 78px !important;
+				object-fit: contain !important;
+				padding: 6px !important;
+				border: 2.5px solid #E5B33A !important;
+				box-shadow: 0 0 22px rgba(229, 179, 58, 0.65) !important;
+				background: rgba(17, 20, 19, 0.6) !important;
+				filter: brightness(1.1) !important;
+			}
+
+			/* ENQUADRAMENTO DEFINITIVO DA INTRODUÇÃO NO CELULAR */
+			.intro-splash {
+				background-image: url('images/PURE_EPOXY_INTRO_6S_BOLA_ESQUERDA_DIREITA.gif') !important;
+				background-size: 128% auto !important; /* Zoom calculado: expande a marca no celular preservando margem de segurança */
+				background-position: center 38% !important;
+				background-color: #000 !important;
+			}
+			.intro-splash::before {
+				background: transparent !important; /* Brilho e iluminação originais mantidos */
+			}
+			.intro-splash span {
+				position: absolute !important;
+				bottom: 12% !important;
+				left: 50% !important;
+				transform: translateX(-50%) !important;
+				font-size: 11px !important;
+				padding: 12px 30px !important;
+			}
+
 			.mobile-menu-toggle {
 				display: inline-flex;
 				position: relative;
@@ -738,60 +765,17 @@
 			.simulator-controls { padding: 24px; }
 			.category-tab { font-size: 10px; padding: 10px 4px; }
 			.color-options-grid { grid-template-columns: 1fr; gap: 10px; }
-			
-			.brand img {
-				width: 78px !important;
-				height: 78px !important;
-				object-fit: contain !important;
-				padding: 6px !important;
-				border: 2.5px solid #E5B33A !important;
-				box-shadow: 0 0 22px rgba(229, 179, 58, 0.65) !important;
-				background: rgba(17, 20, 19, 0.6) !important;
-				filter: brightness(1.1) !important;
-			}
-
-			/* Ajuste de enquadramento cinematico da introducao no celular */
-			.intro-splash {
-				background-image: url('images/PURE_EPOXY_INTRO_6S_BOLA_ESQUERDA_DIREITA.gif') !important;
-				background-size: 118% auto !important;
-				background-position: center 40% !important;
-				background-color: #000 !important;
-			}
-			.intro-splash::before {
-				content: '' !important;
-				position: absolute !important;
-				inset: 0 !important;
-				background: radial-gradient(ellipse at center 40%, transparent 50%, #000 92%) !important;
-				pointer-events: none !important;
-				z-index: 1 !important;
-			}
-			.intro-splash span {
-				position: absolute !important;
-				bottom: 12% !important;
-				left: 50% !important;
-				transform: translateX(-50%) !important;
-				font-size: 11px !important;
-				letter-spacing: .2em !important;
-				padding: 13px 32px !important;
-				border: 1px solid rgba(229, 179, 58, 0.5) !important;
-				background: rgba(0, 0, 0, 0.65) !important;
-				color: #fff !important;
-				border-radius: 4px !important;
-				backdrop-filter: blur(4px) !important;
-				box-shadow: 0 0 15px rgba(229, 179, 58, 0.2) !important;
-				z-index: 2 !important;
-			}
 		}
 	</style>
 </head>
 <body>
 
-<!-- Tela de Introdução Splash -->
+<!-- Tela de Introdução -->
 <div class="intro-splash" id="intro-splash" tabindex="0">
 	<span>ENTER</span>
 </div>
 
-<!-- Cabeçalho de Navegação -->
+<!-- Cabeçalho -->
 <header>
 	<div class="container nav-wrap">
 		<a href="#inicio" class="brand">
@@ -802,6 +786,7 @@
 			<a href="#transformacao">Before & After</a>
 			<a href="#processo">Process</a>
 			<a href="#galeria">Projects</a>
+			<a href="#simulador">Virtual Showroom</a>
 			<a href="#orcamento" class="nav-cta">Get a Quote</a>
 		</nav>
 		<button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-label="Open navigation menu">
@@ -812,6 +797,7 @@
 			<a href="#transformacao">Before & After</a>
 			<a href="#processo">Process</a>
 			<a href="#galeria">Projects</a>
+			<a href="#simulador">Virtual Showroom</a>
 			<a href="#orcamento" class="nav-cta">Get a Quote</a>
 		</div>
 	</div>
@@ -935,7 +921,7 @@
 		</div>
 	</section>
 
-	<!-- Seção do Simulador Virtual Multi-Categorias Premium -->
+	<!-- Virtual Showroom / Simulador -->
 	<section class="simulator" id="simulador" aria-labelledby="simulator-title">
 		<div class="container">
 			<div class="section-heading">
@@ -1039,7 +1025,6 @@
 	</section>
 </main>
 
-<!-- Botão Flutuante do WhatsApp -->
 <a class="whatsapp" href="https://wa.me/61435992512" target="_blank" rel="noopener" aria-label="Chat with Pure Epoxy on WhatsApp">
 	<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a9.8 9.8 0 0 0-8.49 14.72L2 22l5.44-1.43A9.8 9.8 0 1 0 12 2Zm0 17.9a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.23.85.86-3.15-.2-.32A8.1 8.1 0 1 1 12 19.9Zm4.44-6.08c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.63.78-.77.94-.14.16-.28.18-.52.06-1.4-.7-2.32-1.25-3.24-2.83-.24-.41.24-.38.69-1.27.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.68 2.57 4.07 3.6 1.51.65 2.1.7 2.85.59.46-.07 1.43-.59 1.63-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"></path></svg>
 	WhatsApp
@@ -1128,7 +1113,7 @@
 		if (event.key === 'Enter' || event.key === ' ') hideIntro();
 	});
 
-	/* Lógica do Simulador Multi-Categorias */
+	// Simulador Multi-Categorias
 	const simImage = document.getElementById('simulator-image');
 	const simLoading = document.getElementById('simulator-loading');
 	const simOverlay = document.getElementById('simulator-overlay-msg');
