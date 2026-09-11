@@ -61,7 +61,11 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: #000 url('images/PURE_EPOXY_INTRO_6S_BOLA_ESQUERDA_DIREITA.gif') center / cover no-repeat;
+			background-color: #000;
+			background-image: url('images/PURE_EPOXY_INTRO_6S_BOLA_ESQUERDA_DIREITA.gif');
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
 			color: #fff;
 			cursor: pointer;
 			transition: opacity .45s ease, visibility .45s ease;
@@ -804,8 +808,9 @@
 			}
 			/* Ajuste para telas de celular */
 			.intro-splash {
-				background-size: 95% auto !important;
-				background-position: center 38% !important;
+				background-image: url('images/intro-mobile.gif') !important;
+				background-size: cover !important;
+				background-position: center center !important;
 			}
 			.intro-splash::before {
 				background:
