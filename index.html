@@ -804,8 +804,13 @@
 			}
 			/* Ajuste para telas de celular */
 			.intro-splash {
-				background-size: 140% auto !important;
-				background-position: center 40% !important;
+				background-size: 95% auto !important;
+				background-position: center 38% !important;
+			}
+			.intro-splash::before {
+				background:
+					linear-gradient(90deg, #000 0%, transparent 16%, transparent 84%, #000 100%),
+					linear-gradient(180deg, #000 0%, transparent 16%, transparent 84%, #000 100%) !important;
 			}
 			.intro-splash span {
 				position: absolute !important;
