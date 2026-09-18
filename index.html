@@ -65,9 +65,10 @@
 		}
 		.intro-splash::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 48%, rgba(229,179,58,.09), transparent 36%); }
 		.intro-mark { position: relative; z-index: 2; width: min(780px, 82vw); text-align: center; }
-		.intro-logo { width: 96px; height: 96px; margin: 0 auto 30px; object-fit: contain; filter: drop-shadow(0 0 18px rgba(229,179,58,.28)); }
-		.intro-name { margin: 0; color: #f6f3eb; font: 500 clamp(2.4rem, 6vw, 5.4rem)/1 'Montserrat', sans-serif; letter-spacing: .22em; text-indent: .22em; text-shadow: 0 10px 38px rgba(0,0,0,.7); }
-		.intro-name strong { color: #e5b33a; font-weight: 700; }
+		.intro-name { margin: 0; color: #f6f3eb; font: 500 clamp(2.4rem, 6vw, 5.4rem)/.94 'Montserrat', sans-serif; letter-spacing: .22em; text-indent: .22em; text-shadow: 0 10px 38px rgba(0,0,0,.7); }
+		.intro-name span { display: block; }
+		.intro-name .pure-word { margin-bottom: .14em; font-size: 1.16em; }
+		.intro-name strong { display: block; color: #e5b33a; font-weight: 700; }
 		.gold-track { position: relative; width: min(660px, 76vw); height: 2px; margin: 32px auto 0; background: linear-gradient(90deg, transparent, #9f7414 10%, #f2c85d 50%, #9f7414 90%, transparent); box-shadow: 0 0 12px rgba(229,179,58,.8); }
 		.gold-orb { position: absolute; top: 50%; left: 0; width: 12px; height: 12px; border-radius: 50%; background: #fff3b5; box-shadow: 0 0 8px #fff, 0 0 24px #e5b33a; transform: translate(-50%,-50%); animation: goldSweep 4.8s cubic-bezier(.45,0,.55,1) infinite; }
 		.intro-kicker { display: block; margin-top: 24px; color: rgba(255,255,255,.5); font: 600 10px/1 'Montserrat', sans-serif; letter-spacing: .32em; text-transform: uppercase; }
@@ -710,7 +711,6 @@
 			}
 
 			.intro-splash { display: flex; }
-			.intro-logo { width: 78px; height: 78px; margin-bottom: 24px; }
 			.intro-name { font-size: clamp(29px, 8.5vw, 46px); letter-spacing: .12em; text-indent: .12em; white-space: nowrap; }
 			.gold-track { width: 78vw; margin-top: 24px; }
 			.intro-enter { bottom: 34px; padding: 11px 22px; }
@@ -797,8 +797,7 @@
 <!-- Tela de Introdução -->
 <div class="intro-splash" id="intro-splash" tabindex="0">
 	<div class="intro-mark" aria-label="Pure Epoxy">
-		<img class="intro-logo" src="images/logo.png" alt="">
-		<p class="intro-name">PURE <strong>EPOXY</strong></p>
+		<p class="intro-name"><span class="pure-word">PURE</span><strong>EPOXY</strong></p>
 		<div class="gold-track" aria-hidden="true"><i class="gold-orb"></i></div>
 		<small class="intro-kicker">Premium surfaces · Queensland</small>
 	</div>
