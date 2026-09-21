@@ -269,12 +269,12 @@
 			color: #fff; 
 		}
 
-		.intro { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; padding: 80px 0 40px; }
+		.intro { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; padding: 90px 0 50px; }
 		.intro h2, .section-heading h2 { margin: 16px 0 0; font-size: clamp(2.4rem, 4.5vw, 4.2rem); line-height: 1.05; letter-spacing: -.04em; }
 		.intro-copy { color: var(--muted); font-size: 17px; font-weight: 300; }
 		.intro-copy strong { color: var(--ink); font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
 
-		.transform { background: var(--cream); padding: 80px 0 40px; }
+		.transform { position: relative; background: linear-gradient(180deg, #ece8df 0%, var(--cream) 110px, var(--cream) 100%); padding: 96px 0 52px; box-shadow: inset 0 1px rgba(17,20,19,.04); }
 		.section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 40px; }
 		.section-heading p { max-width: 350px; margin-bottom: 4px; color: var(--muted); font-size: 16px; font-weight: 300; }
 		.compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -315,7 +315,7 @@
 			color: var(--ink);
 		}
 
-		.process { padding: 80px 0 40px; }
+		.process { position: relative; padding: 96px 0 52px; }
 		.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 		.process-card { 
 			border-top: 2px solid var(--line);
@@ -338,7 +338,7 @@
 		.process-card h3 { margin: 16px 0 10px; font-size: 21px; letter-spacing: -.02em; }
 		.process-card p { color: var(--muted); font-size: 15px; font-weight: 300; }
 
-		.featured { background: var(--dark); color: #fff; padding: 90px 0 50px; }
+		.featured { position: relative; background: linear-gradient(180deg, #292d2b 0%, var(--dark) 120px, var(--dark) 100%); color: #fff; padding: 106px 0 62px; box-shadow: inset 0 18px 45px rgba(0,0,0,.12); }
 		.featured-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; }
 		.featured-image { position: relative; overflow: hidden; border-radius: 8px; }
 		.featured-image img { width: 100%; height: 500px; object-fit: cover; }
@@ -363,7 +363,7 @@
 		.featured .button { background: var(--orange); border-color: var(--orange); color: var(--ink); }
 		.featured .button:hover { background: #fff; border-color: #fff; color: var(--ink); }
 
-		.gallery { padding: 80px 0 40px; }
+		.gallery { position: relative; padding: 96px 0 52px; }
 		.gallery-grid { display: grid; grid-template-columns: 1.35fr .8fr .8fr; grid-template-rows: 220px 220px; gap: 20px; }
 		.gallery-grid figure { 
 			position: relative; 
@@ -386,9 +386,11 @@
 
 		/* Simulador Showroom */
 		.simulator {
-			background: var(--cream);
-			padding: 80px 0;
+			position: relative;
+			background: linear-gradient(180deg, #ece8df 0%, var(--cream) 115px, var(--cream) 100%);
+			padding: 98px 0 86px;
 			border-bottom: 1px solid var(--line);
+			box-shadow: inset 0 1px rgba(17,20,19,.045);
 		}
 		.simulator-layout {
 			display: grid;
@@ -573,7 +575,42 @@
 		}
 		.simulator-cta-box .button { width: 100%; min-height: 52px; }
 
-		.quote { background: var(--dark); color: #fff; padding: 90px 0 50px; }
+		.quote { position: relative; background: linear-gradient(180deg, #292d2b 0%, var(--dark) 120px, var(--dark) 100%); color: #fff; padding: 106px 0 64px; box-shadow: inset 0 18px 45px rgba(0,0,0,.12); }
+
+		/* Transições premium entre seções */
+		.intro::before,
+		.transform::before,
+		.process::before,
+		.featured::before,
+		.gallery::before,
+		.simulator::before,
+		.quote::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 50%;
+			z-index: 2;
+			width: 72px;
+			height: 2px;
+			background: linear-gradient(90deg, transparent, var(--orange), transparent);
+			box-shadow: 0 0 14px rgba(229,179,58,.2);
+			transform: translateX(-50%);
+		}
+		.featured::after,
+		.quote::after {
+			content: '';
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 54px;
+			background: linear-gradient(180deg, transparent, rgba(0,0,0,.1));
+			pointer-events: none;
+		}
+		.transform > .container,
+		.featured > .container,
+		.simulator > .container,
+		.quote > .container { position: relative; z-index: 1; }
 		.quote-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: start; }
 		.quote h2 { margin: 16px 0; font-size: clamp(2.8rem, 5vw, 4.8rem); line-height: 1.0; letter-spacing: -.04em; color: #fff; }
 		.quote-intro p { max-width: 320px; font-size: 17px; color: rgba(255,255,255,0.7); font-weight: 300; }
