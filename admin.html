@@ -114,6 +114,7 @@
 		const loginStatus = document.getElementById('login-status');
 		const mediaStatus = document.getElementById('media-status');
 		let currentUser = null;
+		let passwordVerificationInProgress = false;
 
 		const setBusy = (button, busy, label) => { button.disabled = busy; if (label) button.textContent = busy ? 'Please wait...' : label; };
 		const isAdmin = async () => { const { data, error } = await client.rpc('is_admin'); return !error && data === true; };
@@ -124,10 +125,11 @@
 			const button = document.getElementById('login-button');
 			const email = document.getElementById('email').value.trim();
 			const password = document.getElementById('password').value;
+			passwordVerificationInProgress = true;
 			setBusy(button, true, 'Continue securely'); loginStatus.textContent = 'Validating credentials...';
 			const { data, error } = await client.auth.signInWithPassword({ email, password });
-			if (error) { loginStatus.textContent = 'Invalid email or password.'; setBusy(button, false, 'Continue securely'); return; }
-			if (!(await isAdmin())) { await client.auth.signOut(); loginStatus.textContent = 'This account is not authorised.'; setBusy(button, false, 'Continue securely'); return; }
+			if (error) { passwordVerificationInProgress = false; loginStatus.textContent = 'Invalid email or password.'; setBusy(button, false, 'Continue securely'); return; }
+			if (!(await isAdmin())) { await client.auth.signOut(); passwordVerificationInProgress = false; loginStatus.textContent = 'This account is not authorised.'; setBusy(button, false, 'Continue securely'); return; }
 			await client.auth.signOut();
 			const redirectTo = `${location.origin}${location.pathname}`;
 			const { error: mailError } = await client.auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: redirectTo } });
@@ -140,7 +142,7 @@
 			if (!session) return;
 			if (await isAdmin()) openDashboard(session.user); else client.auth.signOut();
 		};
-		client.auth.onAuthStateChange((_event, session) => { if (session && !dashboard.classList.contains('is-visible')) setTimeout(() => restoreSession(), 0); });
+		client.auth.onAuthStateChange((_event, session) => { if (session && !passwordVerificationInProgress && !dashboard.classList.contains('is-visible')) setTimeout(() => restoreSession(), 0); });
 		restoreSession();
 
 		document.getElementById('logout-button').addEventListener('click', async () => { await client.auth.signOut(); location.reload(); });
