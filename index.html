@@ -1258,11 +1258,16 @@
 			} else if (isVideo) {
 				figure.classList.add('has-video');
 				const video = document.createElement('video');
-				video.src = item.file_url;
 				video.controls = true;
-				video.preload = 'metadata';
+				video.preload = 'auto';
 				video.playsInline = true;
+				video.setAttribute('playsinline', '');
+				video.setAttribute('webkit-playsinline', '');
 				video.setAttribute('controlsList', 'nodownload');
+				const source = document.createElement('source');
+				source.src = item.file_url;
+				source.type = /\.webm(?:$|[?#])/i.test(mediaAddress) ? 'video/webm' : /\.(mov)(?:$|[?#])/i.test(mediaAddress) ? 'video/quicktime' : 'video/mp4';
+				video.appendChild(source);
 				if (item.thumbnail_url) video.poster = item.thumbnail_url;
 				figure.appendChild(video);
 			} else {
