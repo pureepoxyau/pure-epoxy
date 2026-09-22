@@ -229,7 +229,9 @@
 				if (file.size > 50 * 1024 * 1024) { mediaStatus.textContent = 'The file exceeds the 50 MB limit.'; setBusy(button, false, 'Publish work'); return; }
 				storagePath = `${currentUser.id}/${Date.now()}-${safeName(file.name)}`;
 				mediaStatus.textContent = 'Uploading media...';
-				const { error: uploadError } = await client.storage.from('portfolio-media').upload(storagePath, file, { cacheControl: '3600', upsert: false });
+				const extension = file.name.split('.').pop().toLowerCase();
+				const contentType = type === 'video' ? (extension === 'webm' ? 'video/webm' : extension === 'mov' ? 'video/quicktime' : 'video/mp4') : (file.type || (extension === 'png' ? 'image/png' : extension === 'webp' ? 'image/webp' : extension === 'gif' ? 'image/gif' : 'image/jpeg'));
+				const { error: uploadError } = await client.storage.from('portfolio-media').upload(storagePath, file, { cacheControl: '3600', contentType, upsert: false });
 				if (uploadError) { mediaStatus.textContent = `Upload failed: ${uploadError.message}`; setBusy(button, false, 'Publish work'); return; }
 				fileUrl = client.storage.from('portfolio-media').getPublicUrl(storagePath).data.publicUrl;
 			}
