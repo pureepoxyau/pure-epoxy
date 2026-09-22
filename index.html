@@ -377,7 +377,10 @@
 		}
 		.gallery-grid figure:first-child { grid-row: span 2; }
 		.gallery-grid img, .gallery-grid video { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
-		.gallery-grid figure:hover img, .gallery-grid figure:hover video { transform: scale(1.06); }
+		.gallery-grid video { display: block; background: #080909; object-fit: contain; }
+		.gallery-grid figure:hover img { transform: scale(1.06); }
+		.gallery-grid .has-video { cursor: default; background: #080909; }
+		.gallery-grid .has-video::after { display: none; }
 		.gallery-grid figure { cursor: zoom-in; }
 		.gallery-grid figure::after { content: 'View project  ↗'; position: absolute; right: 16px; bottom: 16px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; background: rgba(10,12,11,.66); color: #fff; font: 600 9px 'Montserrat', sans-serif; letter-spacing: .12em; opacity: 0; transform: translateY(6px); transition: .3s ease; text-transform: uppercase; backdrop-filter: blur(7px); }
 		.gallery-grid figure:hover::after { opacity: 1; transform: translateY(0); }
@@ -1240,6 +1243,8 @@
 		(data || []).forEach((item) => {
 			const figure = document.createElement('figure');
 			figure.className = 'dynamic-project reveal is-visible';
+			const mediaAddress = `${item.file_url || ''} ${item.storage_path || ''}`;
+			const isVideo = item.media_type === 'video' || /\.(mp4|webm|mov|m4v)(?:\s|$|[?#])/i.test(mediaAddress);
 
 			if (item.media_type === 'youtube') {
 				const iframe = document.createElement('iframe');
@@ -1250,12 +1255,14 @@
 				iframe.allowFullscreen = true;
 				iframe.style.cssText = 'width:100%;height:100%;border:0;';
 				figure.appendChild(iframe);
-			} else if (item.media_type === 'video') {
+			} else if (isVideo) {
+				figure.classList.add('has-video');
 				const video = document.createElement('video');
 				video.src = item.file_url;
 				video.controls = true;
 				video.preload = 'metadata';
 				video.playsInline = true;
+				video.setAttribute('controlsList', 'nodownload');
 				if (item.thumbnail_url) video.poster = item.thumbnail_url;
 				figure.appendChild(video);
 			} else {
