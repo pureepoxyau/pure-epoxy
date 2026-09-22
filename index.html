@@ -366,7 +366,7 @@
 		.featured .button:hover { background: #fff; border-color: #fff; color: var(--ink); }
 
 		.gallery { position: relative; padding: 96px 0 52px; }
-		.gallery-grid { display: grid; grid-template-columns: 1.35fr .8fr .8fr; grid-template-rows: 220px 220px; gap: 20px; }
+		.gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 220px 220px; grid-auto-rows: 220px; gap: 20px; }
 		.gallery-grid figure { 
 			position: relative; 
 			overflow: hidden; 
@@ -381,7 +381,7 @@
 		.gallery-grid figure { cursor: zoom-in; }
 		.gallery-grid figure::after { content: 'View project  ↗'; position: absolute; right: 16px; bottom: 16px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; background: rgba(10,12,11,.66); color: #fff; font: 600 9px 'Montserrat', sans-serif; letter-spacing: .12em; opacity: 0; transform: translateY(6px); transition: .3s ease; text-transform: uppercase; backdrop-filter: blur(7px); }
 		.gallery-grid figure:hover::after { opacity: 1; transform: translateY(0); }
-		.gallery-grid .dynamic-project { min-height: 220px; }
+		.gallery-grid .dynamic-project { min-width: 0; min-height: 0; height: 220px; }
 		.gallery-grid .dynamic-project figcaption { position: absolute; z-index: 2; left: 16px; bottom: 15px; max-width: calc(100% - 120px); color: #fff; font: 600 11px/1.35 'Montserrat', sans-serif; text-shadow: 0 2px 12px rgba(0,0,0,.8); }
 		.gallery-grid .dynamic-project::before { content: ''; position: absolute; z-index: 1; inset: 45% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.72)); pointer-events: none; }
 		.gallery-status { grid-column: 1 / -1; margin: 12px 0 0; color: var(--muted); font-size: 13px; }
@@ -781,8 +781,9 @@
 			.compare-grid, .process-grid { grid-template-columns: 1fr; gap: 20px; }
 			.compare-slider { min-height: 360px; }
 			.featured-image img { height: 320px; }
-			.gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 150px 150px; gap: 12px; }
+			.gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 150px 150px; grid-auto-rows: 150px; gap: 12px; }
 			.gallery-grid figure:first-child { grid-column: 1 / -1; grid-row: auto; }
+			.gallery-grid .dynamic-project { height: 150px; }
 			form { grid-template-columns: 1fr; gap: 20px; }
 			.field.full, .form-status { grid-column: auto; }
 			footer { padding: 40px 0 88px !important; }
