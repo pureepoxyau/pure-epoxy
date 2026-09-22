@@ -50,6 +50,9 @@
 		.media-actions { display:flex; flex-wrap:wrap; gap:7px; }
 		.media-actions .btn { min-height:34px; padding:0 12px; font-size:8px; }
 		.hidden { display:none!important; }
+		.mfa-box { margin-top:22px; padding-top:22px; border-top:1px solid var(--line); }
+		.qr-code { width:210px; max-width:100%; margin:16px auto; padding:10px; border-radius:12px; background:#fff; display:block; }
+		.secret-code { padding:10px; border:1px dashed rgba(229,179,58,.5); border-radius:8px; color:var(--gold); text-align:center; word-break:break-all; font:600 12px/1.5 monospace; }
 		.back { color:#c9cecb; font-size:12px; text-decoration:none; }
 		.back:hover { color:var(--gold); }
 		@media(max-width:800px){ .dashboard-grid,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.topbar{align-items:flex-start}.media-item{grid-template-columns:82px 1fr}.media-item img,.media-item video,.media-placeholder{width:82px;height:72px}.auth-card{padding:25px} }
@@ -65,13 +68,26 @@
 		<section class="card auth-card" id="auth-card">
 			<p class="gold">SECURE ACCESS</p>
 			<h1>Portfolio<br>management.</h1>
-			<p class="muted">Enter the administrator credentials. After the password is validated, a secure confirmation link will be sent to the registered email.</p>
+			<p class="muted">Enter the administrator credentials. Access is protected by a six-digit code generated in your authenticator app.</p>
 			<form id="login-form">
 				<div class="field"><label for="email">Administrator email</label><input id="email" type="email" value="pureepoxy.au@gmail.com" autocomplete="username" required></div>
 				<div class="field" style="margin-top:16px"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
 				<div class="actions" style="margin-top:22px"><button class="btn" id="login-button" type="submit">Continue securely</button></div>
 				<p class="status" id="login-status" role="status"></p>
 			</form>
+			<div class="mfa-box hidden" id="mfa-setup">
+				<h2>Set up authenticator</h2>
+				<p class="muted">Scan this QR Code with Google Authenticator, Microsoft Authenticator or Authy. This is required only once.</p>
+				<img class="qr-code" id="mfa-qr" alt="Authenticator QR Code">
+				<p class="muted">If scanning is unavailable, enter this key manually:</p>
+				<div class="secret-code" id="mfa-secret"></div>
+				<form id="mfa-enrol-form" style="margin-top:16px"><div class="field"><label for="mfa-enrol-code">Six-digit code</label><input id="mfa-enrol-code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required></div><div class="actions" style="margin-top:18px"><button class="btn" type="submit">Activate protection</button></div><p class="status" id="mfa-enrol-status"></p></form>
+			</div>
+			<div class="mfa-box hidden" id="mfa-verify">
+				<h2>Security code</h2>
+				<p class="muted">Open your authenticator app and enter the current six-digit code.</p>
+				<form id="mfa-verify-form"><div class="field"><label for="mfa-code">Six-digit code</label><input id="mfa-code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required></div><div class="actions" style="margin-top:18px"><button class="btn" type="submit">Verify and enter</button></div><p class="status" id="mfa-status"></p></form>
+			</div>
 		</section>
 
 		<main class="dashboard" id="dashboard">
@@ -114,35 +130,66 @@
 		const loginStatus = document.getElementById('login-status');
 		const mediaStatus = document.getElementById('media-status');
 		let currentUser = null;
-		let passwordVerificationInProgress = false;
+		let activeFactorId = null;
 
 		const setBusy = (button, busy, label) => { button.disabled = busy; if (label) button.textContent = busy ? 'Please wait...' : label; };
 		const isAdmin = async () => { const { data, error } = await client.rpc('is_admin'); return !error && data === true; };
 		const openDashboard = async (user) => { currentUser = user; authCard.classList.add('hidden'); dashboard.classList.add('is-visible'); await loadItems(); };
+		const showOnly = (section) => { document.getElementById('login-form').classList.toggle('hidden', section !== 'login'); document.getElementById('mfa-setup').classList.toggle('hidden', section !== 'setup'); document.getElementById('mfa-verify').classList.toggle('hidden', section !== 'verify'); };
+
+		const continueMfaFlow = async () => {
+			if (!(await isAdmin())) { await client.auth.signOut(); loginStatus.textContent = 'This account is not authorised.'; showOnly('login'); return; }
+			const { data: assurance, error: assuranceError } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
+			if (assuranceError) { loginStatus.textContent = assuranceError.message; return; }
+			const { data: { user } } = await client.auth.getUser();
+			if (assurance.currentLevel === 'aal2') { await openDashboard(user); return; }
+			const { data: factors, error: factorError } = await client.auth.mfa.listFactors();
+			if (factorError) { loginStatus.textContent = factorError.message; return; }
+			const verified = (factors.totp || []).find((factor) => factor.status === 'verified');
+			if (verified) { activeFactorId = verified.id; showOnly('verify'); document.getElementById('mfa-code').focus(); return; }
+			for (const pending of (factors.totp || []).filter((factor) => factor.status !== 'verified')) await client.auth.mfa.unenroll({ factorId: pending.id });
+			const { data: enrolment, error: enrolError } = await client.auth.mfa.enroll({ factorType: 'totp', friendlyName: 'Pure Epoxy Admin' });
+			if (enrolError) { loginStatus.textContent = enrolError.message; return; }
+			activeFactorId = enrolment.id;
+			document.getElementById('mfa-qr').src = enrolment.totp.qr_code;
+			document.getElementById('mfa-secret').textContent = enrolment.totp.secret;
+			showOnly('setup');
+		};
 
 		document.getElementById('login-form').addEventListener('submit', async (event) => {
 			event.preventDefault();
 			const button = document.getElementById('login-button');
 			const email = document.getElementById('email').value.trim();
 			const password = document.getElementById('password').value;
-			passwordVerificationInProgress = true;
 			setBusy(button, true, 'Continue securely'); loginStatus.textContent = 'Validating credentials...';
-			const { data, error } = await client.auth.signInWithPassword({ email, password });
-			if (error) { passwordVerificationInProgress = false; loginStatus.textContent = 'Invalid email or password.'; setBusy(button, false, 'Continue securely'); return; }
-			if (!(await isAdmin())) { await client.auth.signOut(); passwordVerificationInProgress = false; loginStatus.textContent = 'This account is not authorised.'; setBusy(button, false, 'Continue securely'); return; }
-			await client.auth.signOut();
-			const redirectTo = `${location.origin}${location.pathname}`;
-			const { error: mailError } = await client.auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: redirectTo } });
-			loginStatus.textContent = mailError ? `Unable to send verification email: ${mailError.message}` : 'Password confirmed. Open the secure link sent to your email to complete access.';
+			const { error } = await client.auth.signInWithPassword({ email, password });
+			if (error) { loginStatus.textContent = 'Invalid email or password.'; setBusy(button, false, 'Continue securely'); return; }
+			loginStatus.textContent = '';
+			await continueMfaFlow();
 			setBusy(button, false, 'Continue securely');
+		});
+
+		document.getElementById('mfa-enrol-form').addEventListener('submit', async (event) => {
+			event.preventDefault(); const status=document.getElementById('mfa-enrol-status'); status.textContent='Checking code...';
+			const code=document.getElementById('mfa-enrol-code').value.trim();
+			const { error }=await client.auth.mfa.challengeAndVerify({ factorId:activeFactorId, code });
+			if(error){ status.textContent='Invalid code. Check the app and try again.'; return; }
+			status.textContent='Protection activated.'; await continueMfaFlow();
+		});
+
+		document.getElementById('mfa-verify-form').addEventListener('submit', async (event) => {
+			event.preventDefault(); const status=document.getElementById('mfa-status'); status.textContent='Checking code...';
+			const code=document.getElementById('mfa-code').value.trim();
+			const { error }=await client.auth.mfa.challengeAndVerify({ factorId:activeFactorId, code });
+			if(error){ status.textContent='Invalid code. Wait for a new code and try again.'; return; }
+			await continueMfaFlow();
 		});
 
 		const restoreSession = async () => {
 			const { data: { session } } = await client.auth.getSession();
 			if (!session) return;
-			if (await isAdmin()) openDashboard(session.user); else client.auth.signOut();
+			await continueMfaFlow();
 		};
-		client.auth.onAuthStateChange((_event, session) => { if (session && !passwordVerificationInProgress && !dashboard.classList.contains('is-visible')) setTimeout(() => restoreSession(), 0); });
 		restoreSession();
 
 		document.getElementById('logout-button').addEventListener('click', async () => { await client.auth.signOut(); location.reload(); });
