@@ -376,11 +376,15 @@
 			box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 		}
 		.gallery-grid figure:first-child { grid-row: span 2; }
-		.gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
-		.gallery-grid figure:hover img { transform: scale(1.06); }
+		.gallery-grid img, .gallery-grid video { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(0.16, 1, 0.3, 1); }
+		.gallery-grid figure:hover img, .gallery-grid figure:hover video { transform: scale(1.06); }
 		.gallery-grid figure { cursor: zoom-in; }
 		.gallery-grid figure::after { content: 'View project  ↗'; position: absolute; right: 16px; bottom: 16px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; background: rgba(10,12,11,.66); color: #fff; font: 600 9px 'Montserrat', sans-serif; letter-spacing: .12em; opacity: 0; transform: translateY(6px); transition: .3s ease; text-transform: uppercase; backdrop-filter: blur(7px); }
 		.gallery-grid figure:hover::after { opacity: 1; transform: translateY(0); }
+		.gallery-grid .dynamic-project { min-height: 220px; }
+		.gallery-grid .dynamic-project figcaption { position: absolute; z-index: 2; left: 16px; bottom: 15px; max-width: calc(100% - 120px); color: #fff; font: 600 11px/1.35 'Montserrat', sans-serif; text-shadow: 0 2px 12px rgba(0,0,0,.8); }
+		.gallery-grid .dynamic-project::before { content: ''; position: absolute; z-index: 1; inset: 45% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.72)); pointer-events: none; }
+		.gallery-status { grid-column: 1 / -1; margin: 12px 0 0; color: var(--muted); font-size: 13px; }
 		.lightbox { position: fixed; z-index: 40; inset: 0; display: grid; place-items: center; padding: 5vw; background: rgba(5,6,6,.94); opacity: 0; visibility: hidden; transition: .3s ease; }
 		.lightbox.is-open { opacity: 1; visibility: visible; }
 		.lightbox img { max-width: min(1200px, 92vw); max-height: 84vh; object-fit: contain; border-radius: 8px; box-shadow: 0 30px 90px rgba(0,0,0,.55); }
@@ -956,7 +960,7 @@
 			</div>
 			<p>Explore some of the spaces given a new perspective with Pure Epoxy.</p>
 		</div>
-		<div class="gallery-grid">
+		<div class="gallery-grid" id="portfolio-gallery">
 			<figure><img src="images/gallery-01.jpg" alt="Epoxy project detail in a spacious setting"></figure>
 			<figure><img src="images/gallery-02.jpg" alt="Epoxy floor in a commercial space"></figure>
 			<figure><img src="images/gallery-03.jpg" alt="Contemporary epoxy finish"></figure>
@@ -1116,12 +1120,16 @@
 		</div>
 		<div class="footer-bottom">
 			<p>© <span id="current-year">2026</span> Pure Epoxy. All rights reserved.</p>
-			<p>Premium epoxy flooring across South East Queensland</p>
+			<p>Premium epoxy flooring across South East Queensland · <a href="admin.html" aria-label="Administrator access">Admin</a></p>
 		</div>
 	</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+	const SUPABASE_URL = 'https://nimwsjngtdertsmalktl.supabase.co';
+	const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_wLiwYzxhC2lCPPtpQurF2g_PuxeAJ9-';
+	const portfolioClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 	const fixedHeader = document.querySelector('header');
 	const mobileMenuToggle = document.querySelector('#mobile-menu-toggle');
 	const mobileNav = document.querySelector('#mobile-nav');
@@ -1202,16 +1210,69 @@
 	compareRange.addEventListener('input', updateComparison);
 	updateComparison();
 
-	// Galeria em tela cheia
+	// Galeria em tela cheia e portfólio dinâmico
 	const lightbox = document.getElementById('lightbox');
 	const lightboxImage = document.getElementById('lightbox-image');
 	const closeLightbox = () => { lightbox.classList.remove('is-open'); document.body.style.overflow = ''; };
-	document.querySelectorAll('.gallery-grid img').forEach((image) => {
+	const prepareGalleryImage = (image) => {
 		image.closest('figure').setAttribute('tabindex', '0');
 		const open = () => { lightboxImage.src = image.src; lightboxImage.alt = image.alt; lightbox.classList.add('is-open'); document.body.style.overflow = 'hidden'; };
 		image.closest('figure').addEventListener('click', open);
 		image.closest('figure').addEventListener('keydown', (event) => { if (event.key === 'Enter') open(); });
-	});
+	};
+	document.querySelectorAll('.gallery-grid img').forEach(prepareGalleryImage);
+
+	const loadPortfolio = async () => {
+		const gallery = document.getElementById('portfolio-gallery');
+		const { data, error } = await portfolioClient
+			.from('portfolio_items')
+			.select('*')
+			.eq('published', true)
+			.order('display_order', { ascending: true })
+			.order('created_at', { ascending: false });
+
+		if (error) {
+			console.error('Portfolio loading error:', error.message);
+			return;
+		}
+
+		(data || []).forEach((item) => {
+			const figure = document.createElement('figure');
+			figure.className = 'dynamic-project reveal is-visible';
+
+			if (item.media_type === 'youtube') {
+				const iframe = document.createElement('iframe');
+				iframe.src = item.file_url;
+				iframe.title = item.alt_text || item.title;
+				iframe.loading = 'lazy';
+				iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+				iframe.allowFullscreen = true;
+				iframe.style.cssText = 'width:100%;height:100%;border:0;';
+				figure.appendChild(iframe);
+			} else if (item.media_type === 'video') {
+				const video = document.createElement('video');
+				video.src = item.file_url;
+				video.controls = true;
+				video.preload = 'metadata';
+				video.playsInline = true;
+				if (item.thumbnail_url) video.poster = item.thumbnail_url;
+				figure.appendChild(video);
+			} else {
+				const image = document.createElement('img');
+				image.src = item.file_url;
+				image.alt = item.alt_text || item.title;
+				image.loading = 'lazy';
+				figure.appendChild(image);
+				prepareGalleryImage(image);
+			}
+
+			const caption = document.createElement('figcaption');
+			caption.textContent = item.title;
+			figure.appendChild(caption);
+			gallery.appendChild(figure);
+		});
+	};
+	loadPortfolio();
 	document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
 	lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
 	document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); });
