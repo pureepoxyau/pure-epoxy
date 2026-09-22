@@ -200,6 +200,12 @@
 			document.getElementById('url-field').classList.toggle('hidden', !youtube);
 			document.getElementById('media-file').accept = mediaType.value === 'video' ? 'video/mp4,video/webm,video/quicktime' : 'image/jpeg,image/png,image/webp,image/gif';
 		});
+		document.getElementById('media-file').addEventListener('change', (event) => {
+			const file = event.target.files[0];
+			if (!file) return;
+			if (file.type.startsWith('video/')) mediaType.value = 'video';
+			else if (file.type.startsWith('image/')) mediaType.value = 'image';
+		});
 
 		const youtubeEmbed = (value) => {
 			try { const url = new URL(value); let id = url.hostname.includes('youtu.be') ? url.pathname.slice(1) : url.searchParams.get('v'); if (!id && url.pathname.includes('/embed/')) id = url.pathname.split('/embed/')[1]; return id ? `https://www.youtube.com/embed/${id.split(/[?&]/)[0]}` : ''; } catch { return ''; }
@@ -211,13 +217,15 @@
 			const button = document.getElementById('publish-button');
 			setBusy(button, true, 'Publish work'); mediaStatus.textContent = 'Preparing media...';
 			let fileUrl = '', storagePath = null;
-			const type = mediaType.value;
+			let type = mediaType.value;
 			if (type === 'youtube') {
 				fileUrl = youtubeEmbed(document.getElementById('youtube-url').value.trim());
 				if (!fileUrl) { mediaStatus.textContent = 'Enter a valid YouTube URL.'; setBusy(button, false, 'Publish work'); return; }
 			} else {
 				const file = document.getElementById('media-file').files[0];
 				if (!file) { mediaStatus.textContent = 'Select a file.'; setBusy(button, false, 'Publish work'); return; }
+				if (file.type.startsWith('video/') || /\.(mp4|webm|mov|m4v)$/i.test(file.name)) type = 'video';
+				else if (file.type.startsWith('image/') || /\.(jpe?g|png|webp|gif)$/i.test(file.name)) type = 'image';
 				if (file.size > 50 * 1024 * 1024) { mediaStatus.textContent = 'The file exceeds the 50 MB limit.'; setBusy(button, false, 'Publish work'); return; }
 				storagePath = `${currentUser.id}/${Date.now()}-${safeName(file.name)}`;
 				mediaStatus.textContent = 'Uploading media...';
@@ -241,8 +249,9 @@
 			data.forEach((item,index) => {
 				const row=document.createElement('article'); row.className='media-item';
 				let preview;
-				if(item.media_type==='image'){ preview=document.createElement('img'); preview.src=item.file_url; preview.alt=''; }
-				else if(item.media_type==='video'){ preview=document.createElement('video'); preview.src=item.file_url; preview.muted=true; }
+				const isVideo=item.media_type==='video'||/\.(mp4|webm|mov|m4v)(?:$|[?#])/i.test(`${item.file_url||''} ${item.storage_path||''}`);
+				if(item.media_type==='image'&&!isVideo){ preview=document.createElement('img'); preview.src=item.file_url; preview.alt=''; }
+				else if(isVideo){ preview=document.createElement('video'); preview.src=item.file_url; preview.muted=true; preview.preload='metadata'; }
 				else { preview=document.createElement('div'); preview.className='media-placeholder'; preview.textContent='YouTube'; }
 				const info=document.createElement('div'); info.className='media-info';
 				const title=document.createElement('h3'); title.textContent=item.title;
